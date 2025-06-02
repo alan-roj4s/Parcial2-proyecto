@@ -1,0 +1,43 @@
+frontend es lo que el usuario comun ve.
+
+
+CONCEPTOS{
+	nombreEmpresa: "Paradox",
+	tematica: "videojuegos",
+	productos: "juegos digitales", "perifericos",
+}
+=========================================
+
+PANTALLAS:
+
+
+-pantalla de bienvenida en donde se accede a la cuenta
+
+-despues de ingresar, se muestra los productos dividido en las 2 catergorias (mirar conceptos{}), se debe poder quitar y poner en un carrito
+
+-pantalla de carrito en el que se muestra los productos puestos, se tiene poder quitar o agregar mas cantidades del pregunto
+
+-Al finalizar la compra, se le da un ticket al usuario del producto comprado, con el nombre de usuario, los productos, fecha, la empresa
+
+===============================================================
+
+REQUISITOS del proceso:
+- el usuario debe ingresar correctamente el usuario antes de ver los productos
+- solos los productos habilitados se pueden mostrar en pantalla (true or false)
+- se tiene que registrar en la base de datos los pagos realizados (usuario, fecha y precio total)
+- el ticket debe mostrarse tan pronto se hace el pago
+- se debe poder comprar varios del mismo producto
+- el sistema debe pedir una confirmacion antes de hacer la compra
+- el sistema debe mostrar un boton para volver al inicio antes de finalizar la compra (RECORDAR QUE ES UN AUTOSERVICIO, se debe reiniciar)
+- se debe poder descargar el ticket como PDF (investigar como xuxa se hace esto)
+- se debe paginar los productos para que no esten todos en pantalla (investigar)
+- se debe poder cambiar tema (claro y oscuro), se debe guardar al reiniciar
+- se debe poder volver a la pagina del login (para el administrador)
+
+--------
+
+REQUISITOS generales:
+- deber ser visible en dispositivos android y PC
+- Logo, nombre de empresa ,usuario y botones debe estar presente en cada pagina / pantalla
+- se debe poder navegar entre las paginas con botones
+- el icono de pestaña (favicon) debe estar presente

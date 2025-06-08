@@ -1,3 +1,5 @@
+import { showScreen, startShopping } from "./inicio.js"
+import { filtrarProductos } from "./productos.js"
 const backupProductos = [
     {
         "id": 1,
@@ -87,18 +89,28 @@ let todosLosProductos = [];
 document.addEventListener('DOMContentLoaded', function() {
     inicializar();
     
-    //  LLAMAR A MOSTRAR PRODUCTOS AL CLICKEAR BOTON "VER PRODUCTOS"
-    const botonMostrar = document.querySelector('.btn-productos')
-    botonMostrar.addEventListener('click', function() {
-        mostrarProductos(todosLosProductos);
+    //  LLAMAR A MOSTRAR PRODUCTOS AL CLICKEAR BOTON "COMENZAR A COMPRAR"
+    const botonComprar = document.querySelector('#startShoppingBtn')
+    botonComprar.addEventListener('click', function() {
+        if(startShopping()){
+            filtrarProductos('todos');
+        }
+
+        document.querySelectorAll('[data-categoria]').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        this.classList.add('active')
+        filtrarProductos(this.dataset.categoria); 
     });
-    // console.log('clickie mostrar');
+    console.log('clickie ');
 })
 
 // --------------------------------------
 
+
 //  ------------ ACA VA TODO LO QUE SE NECESITA PARA INICIALIZAR LA PAG
 function inicializar() {
+    
     traerProductos()
     .then (productos => {
         todosLosProductos = productos; 
@@ -108,7 +120,7 @@ function inicializar() {
 
 //  ------------ CARGO LOS PRODUCTOS DESDE EL JSON
 function traerProductos(){
-    return fetch ('productos.json')
+    return fetch ('./productos.json')
     .then(response => {
         if (!response.ok){
             throw new Error ('Error en la respuesta: ' + response.status);
@@ -122,29 +134,5 @@ function traerProductos(){
     })
 }
 
-// ------------  MUESTRO PRODUCTOS DINAMICAMENTE - CREANDO UN CONTENEDOR PARA C/U
-function mostrarProductos (productos){
-    const containerProductos = document.querySelector('.container-productos');
 
-    containerProductos.innerHTML = '<h2 class="mb-4">Catálogo de productos</h2>';
-    const row = document.createElement('div');
-    row.className = 'row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4';
-
-    productos.forEach(producto => {
-        row.innerHTML += `
-            <div class="col">
-                <div class="card h-100">
-                    <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
-                    <h5 class="card-title">${producto.nombre}</h5>
-                    <p class="card-text">
-                        <strong>Plataforma:</strong> ${producto.plataforma}<br>
-                        <strong>Tipo:</strong> ${producto.tipo}<br>
-                        <strong>Precio:</strong> $${producto.precio}
-                    </p>
-                </div>
-            </div>
-        `
-    });
-    containerProductos.appendChild(row);
-}
 

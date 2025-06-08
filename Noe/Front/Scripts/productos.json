@@ -3,7 +3,7 @@
     {
         "id": 1,
         "nombre": "The Legend of Zelda: Tears of the Kingdom",
-        "tipo": "juego-digital",
+        "categoria": "juego-digital",
         "plataforma": "Nintendo Switch",
         "precio": 59.99,
         "imagen": "Imagenes/zelda.jpg"
@@ -11,7 +11,7 @@
     {
         "id": 2,
         "nombre": "God of War: Ragnarök",
-        "tipo": "juego-digital",
+        "categoria": "juego-digital",
         "plataforma": "PlayStation 5",
         "precio": 69.99,
         "imagen": "Imagenes/gow.jpg"
@@ -19,7 +19,7 @@
     {
         "id": 3,
         "nombre": "Halo Infinite",
-        "tipo": "juego-digital",
+        "categoria": "juego-digital",
         "plataforma": "Xbox Series X|S",
         "precio": 49.99,
         "imagen": "Imagenes/halo.jpg"
@@ -27,7 +27,7 @@
     {
         "id": 4,
         "nombre": "Cyberpunk 2077: Phantom Liberty",
-        "tipo": "juego-digital",
+        "categoria": "juego-digital",
         "plataforma": "PC",
         "precio": 39.99,
         "imagen": "Imagenes/cyberpunk.jpg"
@@ -35,7 +35,7 @@
     {
         "id": 5,
         "nombre": "FIFA 23",
-        "tipo": "juego-digital",
+        "categoria": "juego-digital",
         "plataforma": "Multiplataforma",
         "precio": 29.99,
         "imagen": "Imagenes/fifa23.jpg"
@@ -43,7 +43,7 @@
     {
         "id": 6,
         "nombre": "PlayStation 5 - Edición Digital",
-        "tipo": "consola",
+        "categoria": "consola",
         "plataforma": "Sony",
         "precio": 449.99,
         "imagen": "Imagenes/ps5-digital.jpg"
@@ -51,7 +51,7 @@
     {
         "id": 7,
         "nombre": "Xbox Series X",
-        "tipo": "consola",
+        "categoria": "consola",
         "plataforma": "Microsoft",
         "precio": 499.99,
         "imagen": "Imagenes/xbox-series-x.jpg"
@@ -59,7 +59,7 @@
     {
         "id": 8,
         "nombre": "Nintendo Switch OLED",
-        "tipo": "consola",
+        "categoria": "consola",
         "plataforma": "Nintendo",
         "precio": 349.99,
         "imagen": "Imagenes/switch-oled.png"
@@ -67,7 +67,7 @@
     {
         "id": 9,
         "nombre": "Mando DualSense - Rojo",
-        "tipo": "periferico",
+        "categoria": "periferico",
         "plataforma": "PlayStation 5",
         "precio": 69.99,
         "imagen": "Imagenes/dualsense-rojo.jpg"
@@ -75,7 +75,7 @@
     {
         "id": 10,
         "nombre": "Auriculares SteelSeries Arctis 7",
-        "tipo": "periferico",
+        "categoria": "periferico",
         "plataforma": "Multiplataforma",
         "precio": 149.99,
         "imagen": "Imagenes/arctis7.jpg"

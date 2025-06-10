@@ -6,7 +6,7 @@
         "categoria": "juego-digital",
         "plataforma": "Nintendo Switch",
         "precio": 59.99,
-        "imagen": "Imagenes/zelda.jpg"
+        "imagen": "../Imagenes/zelda.jpg"
     },
     {
         "id": 2,
@@ -14,7 +14,7 @@
         "categoria": "juego-digital",
         "plataforma": "PlayStation 5",
         "precio": 69.99,
-        "imagen": "Imagenes/gow.jpg"
+        "imagen": "../Imagenes/gow.jpg"
     },
     {
         "id": 3,
@@ -22,7 +22,7 @@
         "categoria": "juego-digital",
         "plataforma": "Xbox Series X|S",
         "precio": 49.99,
-        "imagen": "Imagenes/halo.jpg"
+        "imagen": "../Imagenes/halo.jpg"
     },
     {
         "id": 4,
@@ -30,7 +30,7 @@
         "categoria": "juego-digital",
         "plataforma": "PC",
         "precio": 39.99,
-        "imagen": "Imagenes/cyberpunk.jpg"
+        "imagen": "../Imagenes/cyberpunk.jpg"
     },
     {
         "id": 5,
@@ -38,46 +38,46 @@
         "categoria": "juego-digital",
         "plataforma": "Multiplataforma",
         "precio": 29.99,
-        "imagen": "Imagenes/fifa23.jpg"
+        "imagen": "../Imagenes/fifa23.jpg"
     },
     {
         "id": 6,
         "nombre": "PlayStation 5 - Edición Digital",
-        "categoria": "consola",
+        "categoria": "dispositivo",
         "plataforma": "Sony",
         "precio": 449.99,
-        "imagen": "Imagenes/ps5-digital.jpg"
+        "imagen": "../Imagenes/ps5-digital.jpg"
     },
     {
         "id": 7,
         "nombre": "Xbox Series X",
-        "categoria": "consola",
+        "categoria": "dispositivo",
         "plataforma": "Microsoft",
         "precio": 499.99,
-        "imagen": "Imagenes/xbox-series-x.jpg"
+        "imagen": "../Imagenes/xbox-series-x.jpg"
     },
     {
         "id": 8,
         "nombre": "Nintendo Switch OLED",
-        "categoria": "consola",
+        "categoria": "dispositivo",
         "plataforma": "Nintendo",
         "precio": 349.99,
-        "imagen": "Imagenes/switch-oled.png"
+        "imagen": "../Imagenes/switch-oled.png"
     },
     {
         "id": 9,
         "nombre": "Mando DualSense - Rojo",
-        "categoria": "periferico",
+        "categoria": "dispositivo",
         "plataforma": "PlayStation 5",
         "precio": 69.99,
-        "imagen": "Imagenes/dualsense-rojo.jpg"
+        "imagen": "../Imagenes/dualsense-rojo.jpg"
     },
     {
         "id": 10,
         "nombre": "Auriculares SteelSeries Arctis 7",
-        "categoria": "periferico",
+        "categoria": "dispositivo",
         "plataforma": "Multiplataforma",
         "precio": 149.99,
-        "imagen": "Imagenes/arctis7.jpg"
+        "imagen": "../Imagenes/arctis7.jpg"
     }]
 }

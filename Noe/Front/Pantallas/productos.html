@@ -6,10 +6,63 @@
     <title>ParaDox</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="./styles.css">
+    <!-- <link rel="stylesheet" href="../Css/global.css"> -->
+    <link rel="stylesheet" href="../Css/producto.css">
 </head>
 
 <body>
+    <!-- NOTA: TRASLADAR EL CSS DEL TEXTO NAVBAR "PARADOX" DE BIENVENIDA.CSS AL GLOBAL.CSS -->
+    <!-- ARREGLAR EL PROBLEMA DEL CSS MOSTRANDOSE POR ENCIMA DEL TEXTO -->
+    <!-- ARREGLAR UN PROBLEMA CON EL BOTON HAMBURGUESA QUE NO MUESTRA LAS OPCIONES EN HTMLS DIFERENTE A INDEX.HTML-->
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="logo">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                ParaDox
+            </a>
+            <!-- BOTON HAMBURGUESA - SOLO APARECE EN PANTALLAS PEQUES -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span> 
+            </button>
+
+            <!-- considera borrar los links a productos y carrito, dejando solo la de inicio y admin, ya que no deberias poder acceder al resto sin antes poder pasar por inicio -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto" id="clientNav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html" id="homeLink">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./productos.html"  id="productsLink" style="display:none;">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./carrito.html" id="cartLink" style="display:none;">
+                            Carrito <span class="badge bg-primary" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- <ul class="navbar-nav ms-auto" id="adminNav" style="display:none;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="dashboardLink">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logoutLink">Cerrar Sesión</a>
+                    </li>
+                </ul> -->
+                <ul class="navbar-nav ms-auto" id="loginNav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./loginAdmin.html" id="adminLoginLink">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
     <div id="products" class="screen">
         <h2>Nuestros productos</h2>
         <p>Hola <span id="customerNameDisplay"></span>, estos son nuestros productos disponibles para vos:</p>
@@ -17,8 +70,8 @@
         <!-- FILTROS -->
         <div>
             <button class="btn btn-outline-primary me-2 active" data-categoria="todos">Todos</button>
-            <button class="btn btn-outline-primary me-2" data-categoria="juego">Juegos</button>
-            <button class="btn btn-outline-primary" data-categoria="consola">Consolas</button>  
+            <button class="btn btn-outline-primary me-2" data-categoria="juego-digital">Juegos</button>
+            <button class="btn btn-outline-primary" data-categoria="dispositivo">Dispositivos</button>  
         </div>
 
         <!-- CATEGORIA JUEGOS -->
@@ -41,7 +94,24 @@
             </div>
         </div>
     </div>
-    <script src="../Scripts/script.js" type="module"> </script>
+
+    <!-- carrito de compras -->
+    <div>
+        <section id="carrito" class="cart-section">
+            <h2>Carrito de Compras (<span id="cart-count">0</span> items)</h2>
+            <ul id="cart-items"></ul>
+            <p>Total: <span id="total-price">$0.00</span></p>
+        </section>
+        
+
+        <!-- boton de redireccion -->
+        <button class="btn btn-success mt-3" id="redirigirBtn"><i class="fas fa-play"></i>Continuar al carrito</button>
+
+    </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../Scripts/productos.js" type="module"> </script>
 </body>
 
 

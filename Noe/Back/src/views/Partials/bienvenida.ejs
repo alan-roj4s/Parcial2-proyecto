@@ -1,0 +1,26 @@
+    <div class="container py-4">
+            <!-- PANTALLA DE BIENVENIDA -->
+            <div id="welcome" class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <h1 class="display-4">
+                        <i class="fas fa-gamepad"></i>
+                        Bienvenidos a ParaDox
+                    </h1>
+                    <p class="lead text-muted">Tu tienda de videojuegos y consolas</p>
+                </div>
+                
+                <div class= "card shadow">
+                    <div class="card-body p-4">
+                        <h5 class="card-title">Ingresa tu nombre para continuar</h5>
+                        <form action="/productos" method="GET">
+                            <div class="mb-3">
+                                <input type="text" name="userName" class="form-control form-control-lg" placeholder="Tu nombre aquí..." required>
+                            </div>
+                            <button type="submit" class="btn btn-lg w-100 py-2">
+                                <i class="fas fa-play me-2"></i> Comenzar a Comprar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+    </div>

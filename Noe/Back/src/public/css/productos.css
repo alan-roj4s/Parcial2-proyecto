@@ -1,0 +1,123 @@
+/* .productos-test {
+  color: white;
+  background-color: red;
+  padding: 20px;
+  font-size: 24px;
+} */
+
+#products {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px ;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    /* padding: 2rem !important; */
+    /* transition: all 0.3s ease; */
+}
+#products:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+#products h2.display-5 {
+    color: var(--primary-color);
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* #products h2.display-5::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 2px;
+} */
+
+#products .lead {
+    color: #555;
+    font-size: 1.2rem;
+}
+
+#products .btn-outline-primary {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--secondary-color);
+}
+
+/* CATEGORIAS */
+.category-section {
+    position: relative;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.category-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+}
+
+.category-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+.category-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    width: 50px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 3px;
+}
+
+.category-title i {
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+

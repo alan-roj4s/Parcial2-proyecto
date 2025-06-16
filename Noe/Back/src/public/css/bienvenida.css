@@ -1,0 +1,79 @@
+.container.py-4 {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* TITULO PRINCIPAL */
+#welcome h1 .display-4 {
+    color: var(--primary-color);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#welcome h1.display-4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+    border-radius: 2px;
+}
+
+/* TARJETA DEL FORM */
+#welcome .card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    /* transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#welcome .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+#welcome .card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+
+/* FORM */
+#welcome .form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: none;
+}
+
+
+.btn {
+    background-color: var(--primary-blue);
+    border: none;
+    box-shadow: 0 0 10px var(--primary-blue);
+    transition: all 0.3s ease;
+}
+.btn:hover {
+    background-color: var(--electric-purple);
+    box-shadow: 0 0 15px var(--electric-purple), 
+                0 0 25px var(--neon-pink);
+}
+

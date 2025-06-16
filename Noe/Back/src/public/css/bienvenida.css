@@ -3,29 +3,59 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+#welcome {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 20px;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 245, 255, 0.2);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* TITULO PRINCIPAL */
 #welcome h1 .display-4 {
-    color: var(--primary-color);
+    color: white;
     font-weight: 800;
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     position: relative;
-    padding-bottom: 15px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+    text-shadow: 0 0 10px var(--neon-cyan);
+    letter-spacing: 1px;
 }
 
 #welcome h1.display-4::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
-    border-radius: 2px;
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--neon-cyan),
+        var(--neon-pink),
+        transparent
+    );
+    border-radius: 3px;
+    box-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    #welcome h1.display-4 i {
+    color: var(--neon-cyan);
+    margin-right: 15px;
+    text-shadow: 0 0 15px var(--neon-cyan);
 }
 
 /* TARJETA DEL FORM */
@@ -33,47 +63,107 @@
     border: none;
     border-radius: 15px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    background: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 0 25px rgba(0, 245, 255, 0.3);
     /* transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+    border: 1px solid var(--neon-cyan);
     max-width: 600px;
-    margin: 0 auto;
+    margin: 2rem auto 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#welcome .lead {
+    color: var(--neon-cyan) !important;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 5px rgba(0, 245, 255, 0.5);
+    font-weight: 300;
 }
 
 #welcome .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 40px rgba(0, 245, 255, 0.5), 0 0 60px rgba(236, 72, 153, 0.3);
+}
+
+#welcome .card-body {
+    position: relative;
+    z-index: 2;
+    padding: 2.5rem !important;
 }
 
 #welcome .card-title {
-    color: var(--primary-color);
+    color: white;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     font-size: 1.5rem;
+    text-shadow: 0 0 5px var(--neon-cyan);
 }
-
 
 /* FORM */
 #welcome .form-control {
-    border: 2px solid #e9ecef;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(0, 245, 255, 0.5);
     border-radius: 10px;
     padding: 15px 20px;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: none;
+    color: white;
+    margin-bottom: 1.5rem;
 }
 
+#welcome .form-control:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 15px var(--neon-pink);
+    color: white;
+    outline: none;
+}
 
-.btn {
-    background-color: var(--primary-blue);
+#welcome .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* BOTON FORM */
+#welcome .btn {
+    background: linear-gradient(
+        135deg,
+        var(--primary-blue) 0%,
+        var(--electric-purple) 100%
+    );
     border: none;
-    box-shadow: 0 0 10px var(--primary-blue);
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: white;
+    box-shadow: 0 0 15px var(--primary-blue), 0 0 25px rgba(0, 245, 255, 0.5);
     transition: all 0.3s ease;
-}
-.btn:hover {
-    background-color: var(--electric-purple);
-    box-shadow: 0 0 15px var(--electric-purple), 
-                0 0 25px var(--neon-pink);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
+#welcome .btn:hover {
+    background: linear-gradient(
+        135deg,
+        var(--electric-purple) 0%,
+        var(--neon-pink) 100%
+    );
+    box-shadow: 0 0 20px var(--electric-purple), 0 0 40px var(--neon-pink);
+    transform: translateY(-2px);
+}
+
+#welcome .btn i {
+    margin-right: 10px;
+    animation: pulse 1.5s infinite;
+}
+
+/* @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+} */

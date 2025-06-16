@@ -1,48 +1,38 @@
-// import script from "./script.js"
+
 
 // ARRAYS
 let todosLosProductos = [];
 let carrito = [];
 
-// NOTA: AUN NO HAY NINGUN LOCAL STORAGE
-// EN CASO DE AÑADIR UNO, HAY QUE LIMPIAR ESTE UNA VEZ QUE EL CLIENTE FINALIZE SU COMPRA
-// PARA EVITAR QUE LOS FUTUROS CLIENTES NO TENGAN PRODUCTOS EN EL CARRO
-// NO SE SI EL LOCALSTORAGE ES NECESARIO
-
-
-
-
-// NOTA: UNA VEZ QUE SE PUEDA PASAR LA INFORMACION DEL NOMBRE,
-// HACER QUE EL NOMBRE INGRESADO APAREZCA EN LA BIENVENIDA DE LA PAGINA
-
 
 // ------------------- LISTENERS / ESCUCHADORES 
 
-document.addEventListener('DOMContentLoaded', function() {
-    inicializar()
-    
-    //codigo encargado de redireccionar a la siguiente pagina
-    const botonRedireccion = document.querySelector('#redirigirBtn')
-    botonRedireccion.addEventListener('click', function() {
-        redirigirAlCarrito();
-    })
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        todosLosProductos = await traerProductos();
 
+        // RENDERIZAMOS TODOS INCIALMENTE
+        filtrarProductos('todos')
 
-
-    // Conectar los botones de categoría al filtro
-    document.querySelectorAll('[data-categoria]').forEach(btn => {
-        btn.addEventListener('click', function() {
+        const filterButton = document.querySelectorAll('[data-categoria]');
+        // Conectar los botones de categoría al filtro
+        filterButton.forEach(btn => {
+            btn.addEventListener('click', function() {
             // Cambiar estilos de botones activos
-            document.querySelectorAll('[data-categoria]').forEach(b => b.classList.remove('active'));
+            filterButton.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
 
             // Filtrar productos según la categoría seleccionada
             filtrarProductos(this.dataset.categoria);
+            });
         });
-    });
+        console.log('Contenido cargado con exito');
+    } catch(error){
+        console.log('Error al inicializar', error);
+    }
     
-    console.log('contenido cargado con exito');
-})
+    //SAQUE EL CODIGO PARA REDIRECCIONAR DE PAGINA YA QUE LO HACE EL EJS CON EL SERVER
+});
 
 // --------------------------------------
 
@@ -54,30 +44,26 @@ function inicializar() {
 }
 
 //  ------------ CARGO LOS PRODUCTOS DESDE EL JSON
-function traerProductos(){
-    return fetch ('../Scripts/productos.json') // solucionado, el fetch al ser llamado en el html, buscaba en la carpeta pantallas, fue cambiado para que busque el json en Scripts
-    .then(response => {
-        if (!response.ok){
-            throw new Error ('Error en la respuesta: ' + response.status);
+// MODIFIQUE EL METODO DE CARGA CON AYSNC Y AWAIT - SACAMOS EL BUCKUP
+async function traerProductos(){
+    try {
+        const response = await fetch('../Scripts/productos.json');
+        if (!response.ok) {
+            throw new Error('Error en la respuesta: ' + response.status);
         }
-        return response.json();
-    })
-    .then (data => data.productos || backupProductos)
-    .catch(error => {
+        const data = await response.json();
+        return data.productos;
+    } catch (error) {
         console.error('Error cargando los datos: ', error);
-        return backupProductos;
-    })
+        return []; // ARRAY VACIO EN CASO DE ERROR
+    }
 }
-
-
-
-
 
 // -- FILTRADO DE PRODUCTOS
 
 function filtrarProductos (categoria){   // export removido
-    const gamesContainer = document.getElementById('gamesContainer')
-    const consolesContainer = document.getElementById('consolesContainer')
+    const gamesContainer = document.getElementById('juego-digital-category')
+    const consolesContainer = document.getElementById('dispositivo-category')
 
     gamesContainer.innerHTML = '';
     consolesContainer.innerHTML = '';
@@ -92,11 +78,13 @@ function filtrarProductos (categoria){   // export removido
             consolesContainer.appendChild(card);
         }
     })
+    // HABRIA QUE AGREGAR UN PARRAFO EN EL CASO DE QUE NO HAYA PRODUCTOS
 }
 
 
 // -------------- CREA LA CARTA QUE MUESTRA EN PANTALLA
 function crearCardProducto(producto) {    // export removido
+    // HAY QUE MODIFICAR CIERTAS CREACIONES DE CARD PARA QUE NO PISE EL DISEÑO QUE YA ESTABA
     const col = document.createElement('div');
     col.className = 'col-md-4 mb-4';
     col.innerHTML = `
@@ -123,11 +111,6 @@ function crearCardProducto(producto) {    // export removido
                      //<strong>Tipo:</strong> ${producto.categoria}<br></br> 
     return col;
 }
-
-
-
-
-
 
 // -------------- funciones del carrito
 

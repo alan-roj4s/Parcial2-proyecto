@@ -1,0 +1,56 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-lg-8 col-md-7">
+            <div id="products" class="products-container">
+                <!-- TITULO BIENVENIDA -->
+                <h2 class="title">Nuestros productos</h2>
+                <p class="lead">Hola <span class="fw-bold text-primary"><%= userName %></span>, estos son nuestros productos disponibles para vos:</p>
+                <!-- FILTROS -->
+                <div class="btn-group mb-4" role="group">
+                    <!-- TYPE= BUTTON???? -->
+                    <button class="btn btn-primary filter-btn active" data-categoria="todos">Todos</button>
+                    <button class="btn btn-primary" data-categoria="juego-digital">Juegos</button>
+                    <button class="btn btn-primary" data-categoria="dispositivo">Dispositivos</button> 
+                </div>
+
+                <!-- CATEGORIA JUEGOS -->
+                <div class="row" id="juego-digital-category">
+                    <!-- ACA SE CARGAN LOS JUEGOS DINAMICAMENTE -->
+                </div>
+
+                <!-- CATEGORIA CONSOLAS -->
+                <div class="row" id="dispositivo-category">           
+                    <!-- Y ACA SE CARGAN LAS CONSOLAS DINAMICAMENTE -->
+                </div>
+
+                <!-- PAGINACION -->
+            <!-- <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><<</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">>></a>
+                        </li>
+                    </ul>
+                </nav> -->
+            
+            </div>
+        </div>
+
+        <!-- CARRITO -->
+        <div class="col-lg-4 col-md-5">
+            <div class="position-sticky" style="top: 20px;">
+                <%- include('carrito')  %>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/Scripts/productos.js" type="module"> </script>
+    
+
+    
+

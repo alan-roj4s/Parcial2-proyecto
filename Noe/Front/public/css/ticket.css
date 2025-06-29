@@ -1,0 +1,191 @@
+#ticket.screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background: radial-gradient(
+        circle at center, 
+        var(--dark-purple) 0%, 
+        var(--dark-bg) 100%
+    );
+}
+
+.ticket {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    background: linear-gradient(
+        145deg, 
+        rgba(15, 23, 42, 0.9) 0%, 
+        rgba(39, 39, 42, 0.95) 100%
+    );
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 
+        0 0 15px var(--neon-cyan),
+        0 0 30px rgba(168, 85, 247, 0.3),
+        inset 0 0 10px rgba(0, 245, 255, 0.2);
+    border: 1px solid var(--electric-purple);
+    color: white;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.ticket::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        var(--neon-red),
+        var(--neon-pink),
+        var(--electric-purple),
+        var(--neon-cyan),
+        var(--neon-yellow)
+    );
+    z-index: 2;
+}
+
+.ticket::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(135deg, transparent 45%, rgba(0, 245, 255, 0.1) 46%, transparent 47%),
+        linear-gradient(225deg, transparent 45%, rgba(0, 245, 255, 0.1) 46%, transparent 47%);
+    background-size: 20px 20px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.ticket h2 {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.ticket h3 {
+    color: var(--electric-purple);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 5px var(--electric-purple);
+}
+
+.ticket hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        var(--neon-cyan), 
+        transparent
+    );
+    margin: 1.5rem 0;
+}
+
+.ticket p {
+    margin: 0.8rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticket p span {
+    color: var(--neon-yellow);
+}
+
+.ticket p strong {
+    color: var(--neon-cyan);
+}
+
+#ticketItems p {
+    border-bottom: 1px dashed rgba(0, 245, 255, 0.3);
+    padding-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+#ticketItems p:last-child {
+    border-bottom: none;
+}
+
+.ticket .text-end h4 {
+    color: var(--neon-pink);
+    font-size: 1.5rem;
+    text-shadow: 0 0 8px var(--neon-pink);
+}
+
+.ticket .text-end h4 strong {
+    color: var(--neon-yellow);
+}
+
+.ticket .btn-primary {
+    background-color: var(--electric-purple);
+    border: none;
+    border-radius: 30px;
+    padding: 0.5rem 2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px var(--electric-purple);
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.ticket .btn-primary:hover {
+    background-color: var(--neon-pink);
+    box-shadow: 0 0 20px var(--neon-pink);
+    transform: translateY(-2px);
+}
+
+
+
+/* EFECTOS DE LAS PUNTAS */
+.ticket-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--neon-cyan);
+    border-style: solid;
+    border-width: 0;
+    opacity: 0.7;
+}
+
+.ticket-corner.tl {
+    top: 10px;
+    left: 10px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+}
+
+.ticket-corner.tr {
+    top: 10px;
+    right: 10px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+}
+
+.ticket-corner.bl {
+    bottom: 10px;
+    left: 10px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+}
+
+.ticket-corner.br {
+    bottom: 10px;
+    right: 10px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+}

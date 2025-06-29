@@ -1,0 +1,28 @@
+    <div id="cart" class="card cart-container"> 
+        <div class="card-header text-white">
+            <h5 class="card-title mb-0">
+                <i class="fas fa-shopping-cart"></i>Tu carrito
+            </h5>
+        </div>
+        <div id="cartItems" class="card-body">
+            <!-- LOS ITEMS DEL CARRITO SE VAN A MOSTRAR ACA DINAMICAMENTE -->
+            
+            <!-- SI NO HAY ITEMS, QUE MUESTRE EL TEXTO DE QUE ESTA VACIO -->
+            <% if(cartItems.length === 0) {%> 
+                <p class="text-center text-muted mb-0">Tu carrito esta vacio.</p>
+            <% } %>
+        </div>
+        <div class="card-footer"> 
+            <div class="cart-total">
+                <h4 class="fw-bold">Total: $<span id="cartTotal" class="text-primary">0</span></h4>
+                <form id="checkoutForm" method="POST" action="/procesar-compra" class="d-inline">
+                    <input type="hidden" id="formUserName" name="userName">
+                    <input type="hidden" id="formCartItems" name="cartItems">
+                    <input type="hidden" id="formCartTotal" name="cartTotal">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-credit-card"></i> Finalizar Compra
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>

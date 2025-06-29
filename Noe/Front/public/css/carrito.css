@@ -1,5 +1,6 @@
 /* CONTENEDOR DEL CARRITO */
 #cart {
+    top: 1rem;
     background: rgba(15, 23, 42, 0.9);
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(0, 245, 255, 0.2);
@@ -7,7 +8,7 @@
     backdrop-filter: blur(5px);
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; 
 }
 
 #cart::before {
@@ -27,16 +28,17 @@
 }
 
 /* TITULO CARRITO */
-#cart h2 {
+#cart h5 {
     color: white;
     text-shadow: 0 0 10px var(--neon-cyan);
     font-weight: 700;
     letter-spacing: 1px;
     position: relative;
     padding-bottom: 15px;
+    text-align: center;
 }
 
-#cart h2::after {
+#cart h5::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -52,7 +54,7 @@
     box-shadow: 0 0 10px var(--neon-pink);
 }
 
-#cart h2 i {
+#cart h5 i {
     color: var(--neon-cyan);
     margin-right: 15px;
     text-shadow: 0 0 15px var(--neon-cyan);
@@ -60,13 +62,14 @@
 
 /* CONTENEDOR DE ITEMS */
 #cartItems {
+    max-height: 400px;
     background: rgba(30, 41, 59, 0.7) !important;
     border: 1px solid rgba(0, 245, 255, 0.2) !important;
     border-radius: 15px !important;
     box-shadow: inset 0 0 20px rgba(0, 245, 255, 0.1);
     min-height: 200px;
     position: relative;
-    overflow: hidden;
+    overflow-y: hidden; // O AUTO??
 }
 
 #cartItems:empty::after {
@@ -102,7 +105,7 @@
     backdrop-filter: blur(5px);
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
     color: white;
 }
 
@@ -197,4 +200,24 @@
     transform: scale(1.2);
 }
 
+/* BOTON BORRAR */
+.delete-button {
+    border: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        var(--neon-red) 0%,  #ff6b6b 100%);
+    box-shadow: 0 0 15px var(--neon-red),
+                0 0 25px rgba(255, 107, 107, 0.5);
+}
 
+.delete-button:hover {
+    background: linear-gradient(135deg, 
+          #ff6b6b 0%,
+            var(--neon-red) 100%);
+    box-shadow: 0 0 20px var(--neon-red),
+                0 0 40px rgba(255, 0, 0, 0.7);
+    transform: translateY(-2px);
+}

@@ -42,7 +42,7 @@
     letter-spacing: 1px;
 }
 
-#products h2.display-5::after {
+#products h2.title::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -70,7 +70,7 @@
 }
 
 /* BOTONES DE FILTRO */
-#products .btn-outline-primary {
+#products .btn-primary {
     border: 2px solid var(--neon-cyan);
     color: var(--neon-cyan);
     font-weight: 600;
@@ -84,8 +84,8 @@
     letter-spacing: 1px;
 }
 
-#products .btn-outline-primary:hover, 
-#products .btn-outline-primary.active {
+#products .btn-primary:hover, 
+#products .btn-primary.active {
     background: rgba(0, 245, 255, 0.2);
     color: white;
     border-color: var(--neon-pink);
@@ -94,7 +94,7 @@
     transform: translateY(-2px);
 }
 
-#products .btn-outline-primary.active {
+#products .btn-primary.active {
     background: linear-gradient(135deg, 
         rgba(0, 245, 255, 0.3) 0%, 
         rgba(236, 72, 153, 0.3) 100%);
@@ -158,35 +158,6 @@
 }
 
 /* CATEGORIAS */
-.category-section {
-    position: relative;
-    padding: 25px;
-    background-color: rgba(15, 23, 42, 0.6);
-    border-radius: 15px;
-    margin-bottom: 30px;
-    overflow: hidden;
-    border: 1px solid rgba(0, 245, 255, 0.2);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.category-section:hover {
-    border-color: var(--neon-cyan);
-    box-shadow: 0 10px 25px rgba(0, 245, 255, 0.2);
-}
-
-.category-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 5px;
-    height: 100%;
-    background: linear-gradient(to bottom, 
-        var(--neon-cyan), 
-        var(--neon-pink));
-}
-
 .category-title {
     color: white;
     font-weight: 700;
@@ -197,38 +168,9 @@
     letter-spacing: 1px;
 }
 
-.category-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 25px;
-    width: 50px;
-    height: 3px;
-    background: var(--neon-pink);
-    border-radius: 3px;
-    box-shadow: 0 0 8px var(--neon-pink);
-}
-
-.category-title i {
-    color: var(--neon-cyan);
-    margin-right: 10px;
-    text-shadow: 0 0 10px var(--neon-cyan);
-}
-
 /* @keyframes pulse {
     0% { opacity: 0.5; }
     50% { opacity: 1; }
     100% { opacity: 0.5; }
-} */
-
-/* PARA CONTENEDORES VACIOS ???  */
-/* #gamesContainer:empty::before,
-#consolesContainer:empty::before {
-    content: 'Cargando productos...';
-    display: block;
-    text-align: center;
-    color: var(--neon-cyan);
-    padding: 2rem;
-    animation: pulse 2s infinite;
 } */
 

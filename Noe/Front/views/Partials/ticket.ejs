@@ -1,0 +1,38 @@
+
+    <div id="ticket" class="screen">
+        <div class="ticket">
+
+            <!-- DECORACIONNN -->
+            <div class="ticket-corner tl"></div>
+            <div class="ticket-corner tr"></div>
+            <div class="ticket-corner bl"></div>
+            <div class="ticket-corner br"></div>
+
+            <div class="text-center mb-4">
+                <h2><i class="fas fa-receipt"></i>TICKET DE COMPRA</h2>
+                <h3>ParaDox Gaming Store</h3>
+                <p>Fecha: <span> <%= new Date().toLocaleDateString() %></span></p>
+                <p>Cliente: <span><%= userName %></span></p>
+                <hr>
+            </div>
+            <div id="ticketItems">
+                <% if (cartItems.length > 0) { %>
+                    <% cartItems.forEach(item => { %>
+                    <p><%= item.nombre %> x<%= item.cantidad %> - $<%= (item.precio) %></p>
+                    <% }) %>
+                <% } else { %>
+                    <p>No hay productos en el carrito.</p>
+                <% } %>
+            </div>
+            <hr>
+            <div class="text-end">
+                <h4><strong>Total: $<%= cartTotal.toFixed(2) %></strong></h4>
+            </div>
+            <div class="text-center mt-4">
+                <p><em>Gracias por su compra!</em></p>
+                <a href="/" class="btn btn-primary" >
+                    <i class="fas fa-redo"></i> Volver al Inicio
+                </a>
+            </div> 
+        </div>
+    </div>

@@ -1,5 +1,3 @@
-
-
 // ARRAYS
 let todosLosProductos = [];
 let carrito = [];
@@ -36,12 +34,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 // --------------------------------------
 
-
-//  ------------ ACA VA TODO LO QUE SE NECESITA PARA INICIALIZAR LA PAG
-function inicializar() {
-// 
-    
-}
 
 //  ------------ CARGO LOS PRODUCTOS DESDE EL JSON
 // MODIFIQUE EL METODO DE CARGA CON AYSNC Y AWAIT - SACAMOS EL BUCKUP
@@ -86,26 +78,28 @@ function filtrarProductos (categoria){   // export removido
 function crearCardProducto(producto) {    // export removido
     // HAY QUE MODIFICAR CIERTAS CREACIONES DE CARD PARA QUE NO PISE EL DISEÑO QUE YA ESTABA
     const col = document.createElement('div');
-    col.className = 'col-md-4 mb-4';
+    col.className = 'col-lg-4 col-md-6 col-sm-12 mb-4';
     col.innerHTML = `
-        <div class="card h-100">
+        <div class="card product-card shadow-sm h-100">
             <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
                 <h5 class="card-title">${producto.nombre}</h5>
-                <p class="card-text">
-                    <strong>Plataforma:</strong> ${producto.plataforma}<br>
-   
-                    <strong>Precio:</strong> $${producto.precio}
-                </p>
-                <button class="btn btn-primary">Agregar al carrito</button>
+                <span class="badge bg-secundary mb-2">${producto.plataforma}</span> 
+                <div class="mt-auto">
+                    <p class="mb-2 fw-bold text-primary fs-5">Precio: $${producto.precio}</p>
+                    <button class="btn btn-primary add-to-cart w-100" data-producto-id="${producto.id}">
+                        <i class="fas fa-cart-plus"></i>Agregar al carrito
+                    </button>
+                </div>
             </div>
         </div>
     `
     //captura señal del boton
-    const botonAgregarCarro = col.querySelector('.btn-primary')
+    const botonAgregarCarro = col.querySelector('.add-to-cart')
 
     //  evento que añade al carrito
     botonAgregarCarro.addEventListener('click', () => {
+        // e.preventDefault();
         agregarAlCarrito(producto);
     });
                      //<strong>Tipo:</strong> ${producto.categoria}<br></br> 
@@ -123,45 +117,51 @@ function agregarAlCarrito(producto) {
   
 }
 
+function calcularTotal() {    
+    return carrito.reduce((total, item) => {
+        const precio = parseFloat(item.precio);
+        const cantidad = parseInt(item.cantidad, 10) || 1;
+        return total + (precio * cantidad);
+    }, 0).toFixed(2);
+}
 // Actualiza la vista del carrito
 function actualizarCarrito() {
-    const contenedor = document.getElementById("cart-items");
-    const total = document.getElementById("total-price");
-    const contador = document.getElementById("cart-count");
+    const contenedor = document.getElementById("cartItems");
+    const total = document.getElementById("cartTotal");
+    // const contador = document.getElementById("cart-count");
 
     contenedor.innerHTML = ""; // limpiar y actualizar
-     
-    if (carrito.length === 0) {
-        contenedor.innerHTML = "<p>No hay elementos en el carrito.</p>";
-        total.textContent = "$0.00";
-        contador.textContent = "0";
-        return;
-    }
 
-    let sumaTotal = 0;
+    const sumaTotal = calcularTotal();
 
     carrito.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.classList.add("item-block");
+        const precio = parseFloat(item.precio);
+        const cantidad = parseInt(item.cantidad, 10) || 1;
 
-        li.innerHTML = `
-        <p class="item-name">${item.nombre} - $${item.precio}</p>
-        <button class="delete-button">Eliminar</button>
+        const div = document.createElement("div");
+        div.classList.add("cart-item", "d-flex", "justify-content-between", "align-items-center", "mb-2", "p-2");
+
+        div.innerHTML = `
+            <div class="item-info"> 
+                <p class="item-name mb-0 text-white">${item.nombre}</p>
+                <small class="text-muted">${precio.toFixed(2)} x ${cantidad}</small>
+            </div>
+            
+            <button class="delete-button"><i class="fas fa-trash"></i></button>
         `;
 
-        li.querySelector(".delete-button").addEventListener("click", () => {
+        div.querySelector(".delete-button").addEventListener("click", () => {
         eliminarDelCarrito(index);
         });
 
-        contenedor.appendChild(li);
-        sumaTotal += item.precio;
-
+        contenedor.appendChild(div);
+        
     console.log("carro actualizado");
     
     });
 
-    total.textContent = `$${sumaTotal.toFixed(2)}`;
-    contador.textContent = carrito.length;
+    total.textContent = sumaTotal;
+    // contador.textContent = carrito.length;
 }
 
 // Elimina producto del carrito
@@ -172,9 +172,44 @@ function eliminarDelCarrito(indice) {
   
 }
 
-function redirigirAlCarrito() {
-    window.location.href = './carrito.html';
+// ----------------------------------
+
+// FORMULARIO PARA TOMAR LOS DATOS DE LA COMPRA Y MOSTRARLOS EN EL TICKET
+document.getElementById('checkoutForm').addEventListener('submit', (event) => {
+    const formUserName = document.getElementById('formUserName');
+    const formCartItems = document.getElementById('formCartItems');
+    const formCartTotal = document.getElementById('formCartTotal');
+
+    const userName = obtenerNombreUsuario(); // Lo vamos a crear abajo
+
+    formUserName.value = userName;
+    formCartItems.value = JSON.stringify(carrito); // serializa el array
+    formCartTotal.value = calcularTotal();
+
+    // El formulario se enviará normalmente después de esto
+});
+
+
+
+// Esta función busca el userName que está renderizado en productos.ejs
+function obtenerNombreUsuario() {
+    const span = document.querySelector('span.fw-bold.text-primary');
+    return span ? span.textContent.trim() : 'Invitado';
 }
+
+
+
+
+// function actualizarInputCarrito() {
+//     const inputCarrito = document.getElementById('cartItemsInput');
+//     if (carrito.length === 0) {
+//         inputCarrito.value = "[]"; // Siempre un JSON válido
+//     } else {
+//         inputCarrito.value = JSON.stringify(carrito);
+//     }
+// }
+
+
 
 // NOTAS: REVISAR SI SE PUEDE EVITAR REPETIR EL PRODUCTO EN LA LISTA, EN VEZ AÑADIR UN INDICE AL LADO QUE INCREMENTA CUANDO COMPRAS MAS PRODUCTOS IGUALES
 // ESTO ES OPCIONAL

@@ -15,6 +15,16 @@ export const renderAdmin = (req, res) => {
     })
 }
 
+// REDIRIGE A LA PANTALLA DEL FORM PARA QUE EL ADMIN PUEDA AGREGAR PRODUCTOS
+
+export const renderDashboardCreateProduct = (req, res) => {
+    res.render ("index", {
+        title: "Admin - Crear Producto",
+        currentView: 'dashboard',
+        isAdmin: true
+    })
+}
+
 // RUTA QUE MUESTRA PRODUCTOS DESPUES DE ENVIAR EL FORM
 export const renderProducts = async (req, res) => {
     const userName = req.query.userName || null; // SI NO EXISTE SERA NULL
@@ -47,13 +57,24 @@ export const renderProducts = async (req, res) => {
 }
 
 export const renderTicket = (req, res) => {
-    const { userName, cartItems, cartTotal } = req.body;
+    console.log('Datos recibido en renderTicket: ', req.body);
 
-    res.render('index', {
-        title: 'ParaDox - Ticket',
-        currentView: 'ticket',
-        userName,
-        cartItems: JSON.parse(cartItems),
-        cartTotal: parseFloat(cartTotal)
-    })
+    const { userName, formCartItems, formCartTotal } = req.body;
+
+    if (!formCartItems) {
+        return res.status(400).send("Datos del carrito faltantes");
+    }
+
+    try {
+        const parseItems = JSON.parse(formCartItems);
+        res.render("index", {
+            title: 'ParaDox - Ticket',
+            currentView: 'ticket',
+            userName: userName || "Cliente no identificado",
+            cartItems: parseItems,
+            cartTotal: parseFloat(formCartTotal)
+        });
+    } catch (error) {
+        return res.status(400).send("Formato de carrito inválido");
+    }
 }

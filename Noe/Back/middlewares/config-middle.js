@@ -1,6 +1,5 @@
 import express from 'express';
 import path from 'path';
-
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -16,4 +15,6 @@ export default (app) => {
 
     console.log('Vistas en:', path.join(__dirname, '../../Front/views'));
     // ACA SE PUEDE AGREGAR EL MIDDLEWARE DE CORS..
+
+
 }

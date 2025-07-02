@@ -87,8 +87,8 @@ function crearCardProducto(producto) {
         nombre: producto.nombre,
         categoria: producto.categoria,
         plataforma: producto.plataforma,
-        precio: producto.precio,
-        imagen: producto.imagen
+        precio: parseFloat(producto.precio),
+        imagen: `/Imagenes/${producto.imagen}`
     }
     //aria-label="Agregar ${productoData.nombre} al carrito">
     //<i class="fas fa-cart-plus me-2"></i>Agregar
@@ -113,7 +113,8 @@ function crearCardProducto(producto) {
     //  evento que añade al carrito
     botonAgregar.addEventListener('click', () => {
         // e.preventDefault();
-        agregarAlCarrito(producto);
+        console.log('agregue producto');
+        agregarAlCarrito(productoData);
     });
     return col;
 }

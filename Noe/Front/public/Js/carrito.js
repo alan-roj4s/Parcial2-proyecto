@@ -58,7 +58,7 @@ function renderizarItems() {
     const contenedor = document.getElementById("cartItems");
     const total = document.getElementById("cartTotal");
     // const contador = document.getElementById("cart-count");
-
+    // if (!contenedor || !total) return;
     contenedor.innerHTML = ""; 
 
     const items = Object.values(carrito);
@@ -91,22 +91,27 @@ function renderizarItems() {
     
     });
 
-    total.textContent = sumaTotal;
+    total.textContent = sumaTotal.toFixed(2);
     // contador.textContent = carrito.length;
 }
 
 // ------------- TOMAR LOS DATOS PARA EL TICKET
 function procesarTicket(event) {
-    const formUserName = document.getElementById('formUserName');
-    const formCartItems = document.getElementById('formCartItems');
-    const formCartTotal = document.getElementById('formCartTotal');
+    
+    const formData = {
+        userName: obtenerNombreUsuario(),
+        formCartItems: JSON.stringify(carrito),
+        formCartTotal: calcularTotal().toFixed(2)
+    };
 
-    const userName = obtenerNombreUsuario(); 
+    console.log("Datos a enviar:", formData);
 
-    if(formUserName) formUserName.value = userName;
-    if(formCartItems) formCartItems.value = JSON.stringify(carrito); // serializa el array
-    if(formCartTotal) formCartTotal.value = calcularTotal();
-
+    // Asignar valores a los campos ocultos
+    document.getElementById('formUserName').value = formData.userName;
+    document.getElementById('formCartItems').value = formData.formCartItems;
+    document.getElementById('formCartTotal').value = formData.formCartTotal;
+    
+    event.target.submit();
 }
 
 // Esta función busca el userName que está renderizado en productos.ejs
@@ -123,9 +128,11 @@ function guardarToLocalStorage() {
 
 function cargarLocalStorage() {
     const carritoGuardado = localStorage.getItem('carrito');
+    console.log('Carrito cargado desde localS', carritoGuardado);
     if(carritoGuardado) {
         carrito = JSON.parse(carritoGuardado) || {};
     }
+    console.log('carrito actual', carrito);
 }
 
 // function actualizarInputCarrito() {

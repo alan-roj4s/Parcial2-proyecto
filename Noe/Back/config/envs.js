@@ -4,8 +4,8 @@ dotenv.config()
 // VALIDACION DE VARIABLES REQUERIDAS
 const requiredEnvVars = ["DB_NAME", "DB_HOST", "DB_USER", "DB_PASSWORD", "DB_PORT"];
 console.log('Variables cargadas:', {
-  DB_NAME: process.env.DB_NAME,
-  DB_USER: process.env.DB_USER
+    DB_NAME: process.env.DB_NAME,
+    DB_USER: process.env.DB_USER
 });
 
 for (const envVar of requiredEnvVars) {

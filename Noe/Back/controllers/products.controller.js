@@ -1,4 +1,5 @@
 import Product from "../models/product-model.js";
+import { createProduct } from "../services/product.service.js";
 
 export const getProducts = async (req, res) => {
     try {
@@ -14,11 +15,24 @@ export const getProducts = async (req, res) => {
 };
 
 // CREAR PRODUCTO - ESTO ES PARA EL ADMIN
-export const createProduct = async (req, res) => {
+export const addProduct = async (req, res) => {
     try {
-        const producto = await Product.create(req.body);
-        res.status(201).json(producto);
+        if (!req.file) {
+            return res.status(400).json({ error: 'La imagen es obligatoria' });
+        }
+        const { nombre, categoria, plataforma, precio } = req.body;
+        const imagen = req.file ? `/Imagenes/${req.file.filename}` : null;
+
+        const productData = { nombre, categoria, plataforma, precio, imagen };
+        const newProduct = await createProduct(productData);
+        
+        res.status(201).json(newProduct);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ error: "Error al crear el producto" });
     }
-}
+};
+
+// MODIFICAR PRODUCTO
+// export const updateProduct = async (req, res) => {
+
+// }

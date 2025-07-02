@@ -157,6 +157,17 @@
     color: var(--neon-pink);
 }
 
+.card-title{
+    color: white;
+}
+
+.card-img-top{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
 /* CATEGORIAS */
 .category-title {
     color: white;

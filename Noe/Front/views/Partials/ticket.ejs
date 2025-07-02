@@ -16,11 +16,11 @@
                 <hr>
             </div>
             <div id="ticketItems">
-                <% if (cartItems.length > 0) { %>
-                    <% cartItems.forEach(item => { %>
-                    <p><%= item.nombre %> x<%= item.cantidad %> - $<%= (item.precio) %></p>
-                    <% }) %>
-                <% } else { %>
+                <% if (Object.keys(cartItems).length > 0) {%>
+                    <% Object.values(cartItems).forEach(item => { %>
+                    <p><%= item.nombre %> x<%= item.cantidad %> - $<%= (item.precio * item.cantidad).toFixed(2) %></p>
+                    <% }); %>
+                <% } else {%>                
                     <p>No hay productos en el carrito.</p>
                 <% } %>
             </div>

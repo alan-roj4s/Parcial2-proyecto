@@ -10,7 +10,7 @@ const router = Router();
 router.get('/', renderHome);
 router.get('/admin', renderAdmin);
 router.get('/productos', renderProducts);
-router.get('/procesar-compra', renderTicket);
+router.post('/procesar-compra', renderTicket);
 
 
 export default router;

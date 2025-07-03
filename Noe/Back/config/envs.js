@@ -8,18 +8,18 @@ console.log('Variables cargadas:', {
   DB_USER: process.env.DB_USER
 });
 
-for (const envVar of requiredEnvVars) {
-    if (!process.env[envVar]) {
-        throw new Error(`Falta la variable de entorno: ${envVar}`);
-    }
-}
+// for (const envVar of requiredEnvVars) {
+//     if (!process.env[envVar]) {
+//         throw new Error(`Falta la variable de entorno: ${envVar}`);
+//     }
+// }
 export default {
     port: process.env.PORT || 4000,
     db_config: {
         database: process.env.DB_NAME,
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
+        password: process.env.DB_PASSWORD || "",
         port:process.env.DB_PORT || 3307,
     },
 };

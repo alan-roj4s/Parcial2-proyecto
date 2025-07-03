@@ -1,5 +1,7 @@
 import { Sequelize } from "sequelize";
 import envs from "./envs.js";
+console.log("==============================");
+console.log(envs.db_config);
 
 const { database, host, user, password, port } = envs.db_config;
 const sequelize = new Sequelize(database, user, password, {

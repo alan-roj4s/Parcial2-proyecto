@@ -1,22 +1,22 @@
 <div id="admin-dashboard">
     <div class="dashboard-header">
         <h2>Panel de Administración</h2>
-        <button class="btn-logout">Cerrar Sesión</button>
+        <button class="btn-logout" id="logoutBtn">Cerrar Sesión</button>
     </div>
     
     <div class="dashboard-stats">
         <div class="stat-card">
             <h3>Productos Activos</h3>
-            <span class="stat-number">25</span>
+            <span class="stat-number"><%= stats.activeProducts %></span>
         </div>
         <div class="stat-card">
             <h3>Productos Inactivos</h3>
-            <span class="stat-number">3</span>
+            <span class="stat-number"><%= stats.inactiveProducts %></span>
         </div>
     </div>
     
     <div class="dashboard-actions">
-        <button class="btn-primary">
+        <button class="btn-primary" id="addProductBtn">
             <i class="fas fa-plus"></i> Agregar Producto
         </button>
     </div>
@@ -34,8 +34,22 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Aquí se cargan los productos desde la base de datos -->
+                <!-- Los productos se cargarán dinámicamente con JavaScript -->
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+// Manejar logout
+document.getElementById('logoutBtn').addEventListener('click', () => {
+    // Aquí puedes agregar lógica para limpiar la sesión si es necesario
+    window.location.href = '/admin';
+});
+
+// Manejar agregar producto
+document.getElementById('addProductBtn').addEventListener('click', () => {
+    // Implementar lógica para agregar producto
+    console.log('Agregar producto');
+});
+</script>

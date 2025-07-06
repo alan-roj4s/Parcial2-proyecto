@@ -1,5 +1,6 @@
 import Product from "../models/product-model.js";
 
+
 export const renderHome = (req, res) => {
     res.render("index", {
         title: "ParaDox - Bienvenida",
@@ -78,3 +79,5 @@ export const renderTicket = (req, res) => {
         return res.status(400).send("Formato de carrito inválido");
     }
 }
+
+

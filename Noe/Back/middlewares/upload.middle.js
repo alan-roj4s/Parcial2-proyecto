@@ -3,9 +3,9 @@ import multer from "multer";
 
 const storage = multer.diskStorage({
     destination: (req, file,next) => {
-        next(null,"public/Imagenes/");
+        next(null,"Front/public/Imagenes/");
     },
-    filename: (req, res, next) => {
+    filename: (req, file, next) => {
         const ext = path.extname(file.originalname);
         const uniqueFilename = `${Date.now()}-${ext}`;
         next(null, uniqueFilename);
@@ -14,19 +14,22 @@ const storage = multer.diskStorage({
 
 
 const fileFilter = (req, file, next) => {
-    const allowedType = /jpeg|jpg|png|webp/;
-    const ext = allowedType.test(path.extname(file.originalname));
-    const mimetype = allowedType(file.mimetype);
+    const allowedExtensions = /jpeg|jpg|png|webp/;
+    const allowedMimeType = /image\/jpeg|image\/jpg|image\/png|image\/webp/;
+    
+    const extensionValida = allowedExtensions.test(path.extname(file.originalname));
+    const mimetypeValido = allowedMimeType.test(file.mimetype)
+    
 
-    if(ext && mimetype) {
+    if(extensionValida && mimetypeValido) {
         next(null, true);
     } else {
-        next(new Error("Extension invalida jpeg | jpg | png | webp"));
+        next(new Error("Extension invalida jpeg | jpg | png | webp"), false);
     }
 };
 
 export default multer ({
     storage,
-    limits: {fieldSize: 5 * 1024 * 1024},
+    limits: {fileSize: 5 * 1024 * 1024},
     fileFilter,
 });

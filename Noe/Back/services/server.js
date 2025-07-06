@@ -5,6 +5,9 @@ import { title } from 'process';
 import middlewares from '../middlewares/index.js';
 import productRouter from '../routes/products.routes.js';
 import sequelize from '../config/db-sequelize.js';
+import adminRouter from '../routes/admin.routes.js';
+import adminDashboard from '../routes/admin.routes.js'
+import corsMiddleware from '../middlewares/cors.middleware.js';
 
 
 //settings
@@ -17,6 +20,9 @@ middlewares(app);
 // ROUTES
 app.use('/', viewsRouter);
 app.use('/api/products', productRouter);
+app.use('/api/admins', adminRouter);
+app.use('/dashboard', adminDashboard); 
+app.use(corsMiddleware);
 
 // SINCRONIZA CON LA DB AL INICIAR
 async function startServer() {
@@ -24,7 +30,7 @@ async function startServer() {
         await sequelize.authenticate();
         console.log('Conexion a la database establecida');
 
-        await sequelize.sync({ alter: true }); // Crea/actualiza tablas
+        await sequelize.sync({ force: false }); // Crea/actualiza tablas
         console.log('Modelos sincronizados con la base de datos.');
         
         return app;

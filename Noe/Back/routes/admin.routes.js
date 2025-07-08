@@ -8,4 +8,4 @@ router.get("/", getAdmins); // TRAER ADMINS CREADOS
 router.post('/login', loginAdmin); // Nueva ruta POST para login
 router.get('/dashboard', renderDashboard); 
 
-export default router;
+export default router; 

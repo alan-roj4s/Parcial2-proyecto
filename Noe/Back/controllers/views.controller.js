@@ -16,16 +16,6 @@ export const renderAdmin = (req, res) => {
     })
 }
 
-// REDIRIGE A LA PANTALLA DEL FORM PARA QUE EL ADMIN PUEDA AGREGAR PRODUCTOS
-
-export const renderDashboardCreateProduct = (req, res) => {
-    res.render ("index", {
-        title: "Admin - Crear Producto",
-        currentView: 'dashboard',
-        isAdmin: true
-    })
-}
-
 // RUTA QUE MUESTRA PRODUCTOS DESPUES DE ENVIAR EL FORM
 export const renderProducts = async (req, res) => {
     const userName = req.query.userName || null; // SI NO EXISTE SERA NULL

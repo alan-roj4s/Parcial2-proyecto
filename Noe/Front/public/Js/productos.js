@@ -13,7 +13,7 @@ export async function inicializarProductos() {
 }
 
 //  ------------ CARGO LOS PRODUCTOS 
-async function cargarProductos(){
+export async function cargarProductos(){
     try {
         const response = await fetch('http://localhost:3000/api/products');
 
@@ -24,7 +24,7 @@ async function cargarProductos(){
     } catch (error) {
         console.error('Error cargando los datos: ', error);
         return []; // ARRAY VACIO EN CASO DE ERROR
-    }
+    } 
 }
 
 function configurarFiltros() {

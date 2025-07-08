@@ -1,0 +1,35 @@
+<div id="admin-dashboard">
+    <div class="dashboard-actions">
+        <h1>Editar Producto</h1>
+        <div id="message-container"></div>
+        <form id="edit-product-form" enctype="multipart/form-data">
+            <input type="hidden" name="productId" value="<%= producto.id %>"> 
+            <input type="text" name="nombre" placeholder="Nombre del producto..." value="<%= producto.nombre %>" required><br>
+            <input type="text" name="categoria" placeholder="Categoria del producto..." value="<%= producto.categoria %>" required><br>
+            <input type="text" name="plataforma" placeholder="Plataforma del producto..." value="<%= producto.plataforma %>" required><br>
+            <input type="number" name="precio" placeholder="Precio del producto..." step="0.01" value="<%= producto.precio %>" required><br>
+            <div class="image-upload">
+                <label for="imagen">Imagen actual:</label>
+                <img src="/Imagenes/<%= producto.imagen %>" alt="Imagen actual" width="100">
+                <input type="file" name="imagen" accept="image/*"><br>
+                <small>Dejar vacio para mantener la imagen actual</small>
+            </div>
+            
+            <button type="button" id="submit-edit-btn">
+                <i class="fas fa-save"></i> Guardar cambios
+            </button>
+        </form>
+    </div>
+    <button id="logoutBtn">Cerrar sesion</button>
+</div>
+<!-- MODAL DE CONFIRMACION -->
+<div id="confirmation-modal" class="modal">
+    <div class="modal-content">
+        <h3>¿Confirma la modificacion del producto?</h3>
+        <p id="product-preview"></p>
+        <div class="modal-buttons">
+            <button id="confirm-add">Si, modificar</button>
+            <button id="cancel-add">Cancelar</button>
+        </div>
+    </div>
+</div>

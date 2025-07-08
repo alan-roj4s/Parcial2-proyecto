@@ -32,6 +32,11 @@
             <% } else if(currentView === 'dashboard') {%>
                 <link rel="stylesheet" href="/css/dashboard.css">
                 <%- include('Partials/dashboard') %>
+            <% } else if(currentView === 'crearProducto') {%>
+                <link rel="stylesheet" href="/css/addProduct.css">
+                <%- include('Partials/crearProducto') %>
+            <% } else if(currentView === 'edit-product') {%>
+                <%- include('Partials/edit-product') %>
             <% } %>
         </main>
 

@@ -1,8 +1,18 @@
 
-export function inicializarAdminDashboard() {
+export function inicializarCreacion() {
     const form = document.getElementById('add-product-form');
-    const modal = document.getElementById('confirmation-modal');
+    if (!form) {
+        console.error('Formulario no encontrado');
+        return;
+    }
     
+    const modal = document.getElementById('confirmation-modal');
+    if (!modal) {
+        console.error('Modal de confirmación no encontrado');
+        return;
+    }
+    
+    const submitBtn = document.getElementById('submit-product-btn')
     const confirmBtn = document.getElementById('confirm-add');
     const cancelBtn = document.getElementById('cancel-add');
 
@@ -14,8 +24,8 @@ export function inicializarAdminDashboard() {
 
     // let formData = new FormData();
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    submitBtn.addEventListener('click', () => {
+        // e.preventDefault();
 
         // VALIDO PRECIO
         const precio = parseFloat(form.precio.value);
@@ -51,7 +61,8 @@ export function inicializarAdminDashboard() {
             const response = await fetch('/api/products/add-product',
                 {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    credentials: 'include'
                 });
 
             // pARA VERIFICAR SI LA RESPUESTA ES JSON

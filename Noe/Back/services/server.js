@@ -21,7 +21,6 @@ middlewares(app);
 app.use('/', viewsRouter);
 app.use('/api/products', productRouter);
 app.use('/api/admins', adminRouter);
-app.use('/dashboard', adminDashboard); 
 app.use(corsMiddleware);
 
 // SINCRONIZA CON LA DB AL INICIAR

@@ -70,8 +70,8 @@
 .dashboard-actions input::placeholder {
     color: rgba(255, 255, 255, 0.6);
 }
-
-.dashboard-actions button[type="submit"] {
+/* [type="submit"]  */
+.dashboard-actions button{
     background: linear-gradient(135deg, var(--electric-purple) 0%, var(--neon-cyan) 100%);
     color: white;
     border: none;
@@ -89,7 +89,8 @@
     box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
 }
 
-.dashboard-actions button[type="submit"]:hover {
+/* [type="submit"]  */
+.dashboard-actions button:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 20px rgba(0, 245, 255, 0.6);
     background: linear-gradient(135deg, var(--neon-pink) 0%, var(--electric-purple) 100%);

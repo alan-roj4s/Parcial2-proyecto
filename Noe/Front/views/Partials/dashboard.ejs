@@ -1,61 +1,12 @@
+<div class="dashboard">
 
-<div id="admin-dashboard">
-    <!-- <div class="dashboard-header">
+    <div class="admin-actions">
         <h2>Panel de Administración</h2>
+        <button id="btnAddProduct">Agregar Producto</button>
     </div>
-    
-    <div class="dashboard-stats">
-        <div class="stat-card">
-            <h3>Productos Activos</h3>
-            <span class="stat-number">25</span>
-        </div>
-        <div class="stat-card">
-            <h3>Productos Inactivos</h3>
-            <span class="stat-number">3</span>
-        </div>
-    </div> -->
-    
-    <div class="dashboard-actions">
-        <h1>Agregar Producto</h1>
-        <div id="message-container"></div>
-        <form id="add-product-form" action="/add-product" method="POST">
-            <input type="text" name="nombre" placeholder="Nombre del producto..." required><br>
-            <input type="text" name="categoria" placeholder="Categoria del producto..." required><br>
-            <input type="text" name="plataforma" placeholder="Plataforma del producto..." required><br>
-            <input type="number" name="precio" placeholder="Precio del producto..." step="0.01" required><br>
-            <input type="file" name="imagen" accept="image/*" required><br>
-            <button type="submit">
-                <i class="fas fa-plus"></i> Agregar Producto
-            </button>
-        </form>
-    </div>
-    <button id="logoutBtn">Cerrar sesion</button>
-</div>
-<!-- MODAL DE CONFIRMACION -->
-<div id="confirmation-modal" class="modal">
-    <div class="modal-content">
-        <h3>¿Confirma la adicion del producto?</h3>
-        <p id="product-preview"></p>
-        <div class="modal-buttons">
-            <button id="confirm-add">Si, agregar</button>
-            <button id="cancel-add">Cancelar</button>
-        </div>
+
+    <!-- Lista de productos -->
+    <div class="product-grid" id="productGrid">
+        <!-- SE CARGAN LOS PRODUCTOS DINAMICAMENTE -->
     </div>
 </div>
-<script>
-    // Manejar logout
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-        // Aquí puedes agregar lógica para limpiar la sesión si es necesario
-        fetch('/admin/logout', {
-            method: 'POST'
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.success) {
-                window.location.href = '/admin';
-            }
-        });
-    });
-
-</script>
-

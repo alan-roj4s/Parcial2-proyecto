@@ -1,14 +1,17 @@
 import { Router } from 'express';
-// AGREGAR EL UPDATEPRODUCT ACA ABAJO
-import { getProducts, addProduct } from '../controllers/products.controller.js';
+import { getProducts, addProduct, getProductToEdit, updateProductEdit, renderAgregarProducto } from '../controllers/products.controller.js';
 import multer from '../middlewares/upload.middle.js';
+
 
 const router = Router();
 
 router.get('/', getProducts);
-
+router.get('/add-product', renderAgregarProducto);
 router.post('/add-product', multer.single("imagen"), addProduct) 
+router.get('/edit-product/:id', getProductToEdit)
+router.put('/edit-product/:id', multer.single("imagen"), updateProductEdit)
 
+// ACA VAN LAS RUTAS DE DELETE Y ACTIVACION - HAY QUE TRAER (Y CREAR) LAS FUNCIONES DESDE PRODUCT CONTROLLER 
 // router.put('/:id', isAdmin, multer.single('imagen'), updateProduct);
 
-export default router;
+export default router; 

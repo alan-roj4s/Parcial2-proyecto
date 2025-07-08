@@ -1,7 +1,9 @@
 import { inicializarProductos } from "./productos.js";
 import { inicializarCarrito } from "./carrito.js";
 import { inicializarLoginAdmin } from "./logAdmin.js";
-import { inicializarAdminDashboard } from "./crearProducto.js"
+import { inicializarDashboard } from "./dashboard.js"
+import { inicializarEdicion } from "./editarProducto.js";
+import { inicializarCreacion } from "./crearProducto.js";
 
 document.addEventListener('DOMContentLoaded', async function() {
     try {
@@ -21,12 +23,22 @@ document.addEventListener('DOMContentLoaded', async function() {
             inicializarLoginAdmin();
         }
 
-        // DASH DE CREAR PRODUCTO
-        if (document.getElementById('admin-dashboard')) {
+        // DASHBOARD
+        if (document.getElementById('productGrid')) {
             console.log('Dashboard admin inicializado');
-            inicializarAdminDashboard();
+            inicializarDashboard();
+        }
+            
+        // CREAR PRODUCTO
+        if (document.getElementById('add-product-form')) {
+            inicializarCreacion();
         }
         
+        // EDITAR PRODUCTO
+        if (document.getElementById('edit-product-form')) {
+            inicializarEdicion();
+        }
+            
         console.log('Inicializaciones exitosas');
     } catch (error) {
         console.error('Error al inicializar', error);

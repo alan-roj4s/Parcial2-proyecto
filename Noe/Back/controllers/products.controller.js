@@ -1,5 +1,5 @@
 import Product from "../models/product-model.js";
-import { createProduct } from "../services/product.service.js";
+import { createProduct, findPkProduct, updateProduct } from "../services/product.service.js";
 
 export const getProducts = async (req, res) => {
     try {
@@ -14,7 +14,18 @@ export const getProducts = async (req, res) => {
     }
 };
 
-// CREAR PRODUCTO - ESTO ES PARA EL ADMIN
+// MUESTRA EL FORM
+export const renderAgregarProducto = (req, res) => {
+    res.render ("index", {
+        title: 'Agregar Producto - Admin',
+        currentView: 'crearProducto',
+        isAdmin: true,
+    })
+}
+
+
+
+// CREAR PRODUCTO 
 export const addProduct = async (req, res) => {
     try {
         console.log('Archivo recibido:', req.file);
@@ -42,7 +53,49 @@ export const addProduct = async (req, res) => {
     }
 };
 
-// MODIFICAR PRODUCTO
-// export const updateProduct = async (req, res) => {
+// TRAIGO PRIMERO EL PRODUCTO A EDITAR
+export const getProductToEdit = async (req, res) => {
+    try {
+        const producto = await findPkProduct(req.params.id);
+        if(!producto) {
+            // SI NO ENCUENTRA EL PRODUCTO..
+            return res.status(404).json({ error: 'Producto no encontrado' });
+        }
+        res.render ("index", {
+            title: 'Editar Producto - Admin',
+            currentView: 'edit-product',
+            isAdmin: true,
+            producto: producto
+        })
+        
+    } catch (error) {
+        res.status(400).json({ 
+            success: false,
+            error: error.message ||  "Error al traer producto" });
+    }
+};
 
-// }
+// PROCESO MODIFICACION/ACTUALIZACION DEL PRODUCTO ENVIANDOLA CON PUT
+export const updateProductEdit = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const producto = await findPkProduct(id);
+        if(!producto) {
+            // SI NO ENCUENTRA EL PRODUCTO..
+            return res.status(404).json({ error: 'Producto no encontrado' });
+        }
+        const { nombre, categoria, plataforma, precio } = req.body;
+        const imagen = req.file ? req.file.filename : undefined;
+
+        const productData = { nombre, categoria, plataforma, precio, imagen }
+
+        if (imagen) productData.imagen = imagen;
+
+        await updateProduct(productData, id);
+        res.redirect('/dashboard');
+    } catch (error) {
+        res.status(400).json({ 
+            success: false,
+            error: error.message ||  "Error al editar producto" });
+    }
+}

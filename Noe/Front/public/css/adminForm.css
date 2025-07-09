@@ -1,0 +1,164 @@
+#admin-dashboard {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.dashboard-actions h1 {
+    color: var(--neon-cyan);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px var(--neon-cyan);
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.dashboard-actions h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.dashboard-actions form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: rgba(15, 23, 42, 0.7);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--electric-purple);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3),
+                inset 0 0 15px rgba(0, 245, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-actions form::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at center,
+        rgba(0, 245, 255, 0.05) 0%,
+        transparent 70%
+    );
+    animation: rotate 20s linear infinite;
+    z-index: -1;
+}
+
+.dashboard-actions input {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--neon-cyan);
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.1);
+}
+
+.dashboard-actions input:focus {
+    outline: none;
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 15px var(--neon-pink);
+    background: rgba(15, 23, 42, 0.9);
+}
+
+.dashboard-actions input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+}
+
+.dashboard-actions input[type="file"] {
+    padding: 10px;
+    border: 1px dashed var(--electric-purple);
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.dashboard-actions input[type="file"]:focus {
+    border-style: solid;
+    box-shadow: 0 0 15px var(--electric-purple);
+}
+
+.dashboard-actions button {
+    background: linear-gradient(45deg, var(--electric-purple), var(--neon-cyan));
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+
+.dashboard-actions button:hover {
+    background: linear-gradient(45deg, var(--neon-cyan), var(--electric-purple));
+    box-shadow: 0 0 20px var(--neon-cyan),
+                0 0 30px var(--electric-purple);
+    transform: translateY(-2px);
+}
+
+.dashboard-actions button:active {
+    transform: translateY(0);
+}
+
+.dashboard-actions button i {
+    margin-right: 10px;
+}
+
+.dashboard-actions button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 55%
+    );
+    transform: rotate(30deg);
+    transition: all 0.5s ease;
+}
+
+.dashboard-actions button:hover::after {
+    left: 100%;
+}
+
+/* Efectos de animación */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Efecto de borde neon para los inputs */
+.dashboard-actions input {
+    position: relative;
+}
+
+.dashboard-actions input:not(:placeholder-shown) {
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+}

@@ -13,7 +13,7 @@ export async function inicializarProductos() {
 }
 
 //  ------------ CARGO LOS PRODUCTOS 
-async function cargarProductos(){
+export async function cargarProductos(){
     try {
         const response = await fetch('http://localhost:3000/api/products');
 
@@ -24,7 +24,7 @@ async function cargarProductos(){
     } catch (error) {
         console.error('Error cargando los datos: ', error);
         return []; // ARRAY VACIO EN CASO DE ERROR
-    }
+    } 
 }
 
 function configurarFiltros() {
@@ -87,8 +87,8 @@ function crearCardProducto(producto) {
         nombre: producto.nombre,
         categoria: producto.categoria,
         plataforma: producto.plataforma,
-        precio: producto.precio,
-        imagen: producto.imagen
+        precio: parseFloat(producto.precio),
+        imagen: `/Imagenes/${producto.imagen}`
     }
     //aria-label="Agregar ${productoData.nombre} al carrito">
     //<i class="fas fa-cart-plus me-2"></i>Agregar
@@ -113,7 +113,8 @@ function crearCardProducto(producto) {
     //  evento que añade al carrito
     botonAgregar.addEventListener('click', () => {
         // e.preventDefault();
-        agregarAlCarrito(producto);
+        console.log('agregue producto');
+        agregarAlCarrito(productoData);
     });
     return col;
 }

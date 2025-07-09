@@ -8,7 +8,13 @@
     backdrop-filter: blur(5px);
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
+}
+
+.cart-container {
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
 #cart::before {
@@ -67,9 +73,10 @@
     border: 1px solid rgba(0, 245, 255, 0.2) !important;
     border-radius: 15px !important;
     box-shadow: inset 0 0 20px rgba(0, 245, 255, 0.1);
-    min-height: 200px;
+    min-height: 0;
+    flex-grow: 1;
     position: relative;
-    overflow-y: hidden; // O AUTO??
+    overflow-y: auto; // O AUTO??
 }
 
 #cartItems:empty::after {

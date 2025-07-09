@@ -28,7 +28,13 @@ const Products = sequelize.define("Products", {
     },
     imagen: {
         type: DataTypes.STRING,
+        allowNull: false
     },
+    activo: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true  // Todos los productos nuevos serán activos por defecto
+    }
     // stock: {
     //     type: DataTypes.INTEGER,
     //     defaultValue: 10

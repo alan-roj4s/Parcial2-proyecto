@@ -1,7 +1,5 @@
 import Product from "../models/product-model.js";
-import Admin from "../models/admin-model.js";
-import bcrypt from 'bcrypt';
-
+import CompraLog from "../models/compras-log-model.js";
 
 export const renderHome = (req, res) => {
     res.render("index", {
@@ -15,9 +13,8 @@ export const renderAdmin = (req, res) => {
     res.render("index", {
         title: 'ParaDox - Login',
         currentView: 'loginAdmin'
-    });
-};
-
+    })
+}
 
 // RUTA QUE MUESTRA PRODUCTOS DESPUES DE ENVIAR EL FORM
 export const renderProducts = async (req, res) => {
@@ -50,62 +47,38 @@ export const renderProducts = async (req, res) => {
     }
 }
 
-export const renderTicket = (req, res) => {
-    const { userName, cartItems, cartTotal } = req.body;
+export const renderTicket = async (req, res) => {
+    console.log('Datos recibido en renderTicket: ', req.body);
 
-    res.render('index', {
-        title: 'ParaDox - Ticket',
-        currentView: 'ticket',
-        userName,
-        cartItems: JSON.parse(cartItems),
-        cartTotal: parseFloat(cartTotal)
-    })
-}
+    const { userName, formCartItems, formCartTotal } = req.body;
 
-// ================ admin
-export const loginAdmin = async (req, res) => {
-    const { email, password } = req.body;
-    
-    try {
-        // Buscar admin por email
-        const admin = await Admin.findOne({ where: { email } });
-        
-        if (!admin) {
-            return res.status(401).json({ error: 'Credenciales incorrectas' });
-        }
-
-        // Comparar contraseñas
-        const isMatch = await bcrypt.compare(password, admin.password);
-        
-        if (!isMatch) {
-            return res.status(401).json({ error: 'Credenciales incorrectas' });
-        }
-
-        // Si todo está bien, redirigir al dashboard
-        res.json({ success: true, redirect: '/dashboard' });
-
-    } catch (error) {
-        console.error('Error en login admin:', error);
-        res.status(500).json({ error: 'Error en el servidor' });
+    if (!formCartItems) {
+        return res.status(400).send("Datos del carrito faltantes");
     }
-};
 
-export const renderDashboard = async (req, res) => {
     try {
-        // Obtener estadísticas de productos (ejemplo)
-        const activeProducts = await Product.count();
-        // const inactiveProducts = await Product.count({ where: { estado: 'inactivo' } });
-        
+        const parseItems = JSON.parse(formCartItems);
+
+        // REGISTRAR COMPRA EN TABLA ======
+        await CompraLog.create({
+            nombre_cliente: userName || "Cliente no identificado",
+            productos: formCartItems, // Guardamos el JSON completo
+            total: parseFloat(formCartTotal)
+        });
+        // ==============
+
+
+
         res.render("index", {
-            title: 'ParaDox - Admin Dashboard',
-            currentView: 'dashboard',
-            stats: {
-                activeProducts,
-                inactiveProducts: 0 // Cambiar cuando tengas el campo estado
-            }
+            title: 'ParaDox - Ticket',
+            currentView: 'ticket',
+            userName: userName || "Cliente no identificado",
+            cartItems: parseItems,
+            cartTotal: parseFloat(formCartTotal)
         });
     } catch (error) {
-        console.error('Error al cargar dashboard:', error);
-        res.redirect('/admin');
+        return res.status(400).send("Formato de carrito inválido");
     }
-};
+}
+
+

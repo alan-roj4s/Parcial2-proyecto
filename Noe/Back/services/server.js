@@ -1,27 +1,25 @@
 import express from 'express';
 import viewsRouter from '../routes/views.routes.js';
-// import '..models/user.model.js';
-import { title } from 'process';
+// import { title } from 'process';
 import middlewares from '../middlewares/index.js';
 import productRouter from '../routes/products.routes.js';
 import sequelize from '../config/db-sequelize.js';
 import adminRouter from '../routes/admin.routes.js';
-import adminDashboard from '../routes/admin.routes.js'
 import corsMiddleware from '../middlewares/cors.middleware.js';
-
+import session from "express-session";
+import envs from "../config/envs.js";
 
 //settings
 const app = express()
 
 middlewares(app);
 
-// app.set('PORT', 3000)
-
 // ROUTES
 app.use('/', viewsRouter);
 app.use('/api/products', productRouter);
 app.use('/api/admins', adminRouter);
 app.use(corsMiddleware);
+
 
 // SINCRONIZA CON LA DB AL INICIAR
 async function startServer() {

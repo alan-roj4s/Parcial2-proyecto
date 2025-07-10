@@ -13,17 +13,18 @@ export async function inicializarDashboard() {
     } catch (error) {
         console.error('Error inicializando productos: ', error);
     }
-}
+} 
 
 function cardProductosDash() {
     const productGrid = document.getElementById('productGrid');
 
     productGrid.innerHTML = productos.map(producto => `
-        <div class="col-md-4 col-lg-3 mb-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
             <div class="card h-100 shadow-sm product-card" data-id="${producto.id}">
+                <img src="/Imagenes/${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-primary">${producto.nombre}</h5>
-                    <p class="card-text text-success fw-bold fs-5">${producto.precio}</p>
+                    <p class="card-price text-success fw-bold fs-5">${producto.precio}</p>
                     <div class="mt-auto">
                         <div class="d-grid gap-2 product-actions">
                             <button class="btn btn-outline-primary btn-sm btn-edit" data-id="${producto.id}">

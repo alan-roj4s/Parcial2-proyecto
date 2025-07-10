@@ -99,7 +99,7 @@ function crearCardProducto(producto) {
                 <h5 class="card-title">${productoData.nombre}</h5>
                 <span class="badge bg-secundary mb-2">${productoData.plataforma}</span> 
                 <div class="mt-auto">
-                    <p class="mb-2 fw-bold text-primary fs-5">Precio: $${productoData.precio}</p>
+                    <p class="mb-2 fw-bold card-price fs-5">Precio: $${productoData.precio}</p>
                     <button class="btn btn-primary add-to-cart w-100" data-producto-id="${productoData.id}">
                         <i class="fas fa-cart-plus"></i>Agregar al carrito
                     </button>

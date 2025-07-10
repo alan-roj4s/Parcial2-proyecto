@@ -96,7 +96,11 @@ export const loginAdmin = async (req, res) => {
 
         // Si todo está bien, redirigir al dashboard
         console.log('redirigiendo al dash');
-        res.json({ success: true, redirect: '/api/admins/dashboard' }); 
+        req.session.isAdmin= true;
+        req.session.adminId = admin.id
+        req.session.save(() => {
+            res.json({success: true, redirect: '/api/admins/dashboard'})
+        })
 
     } catch (error) {
         console.error('Error en login admin:', error);

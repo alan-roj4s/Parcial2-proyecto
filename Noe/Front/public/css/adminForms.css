@@ -1,4 +1,4 @@
-#admin-dashboard {
+#admin-form-container {
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
@@ -11,7 +11,7 @@
     overflow: hidden;
 }
 
-#admin-dashboard::before {
+#admin-form-container::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -23,7 +23,7 @@
     z-index: -1;
 }
 
-.dashboard-actions h1 {
+.form-actions h1 {
     color: var(--neon-cyan);
     text-align: center;
     margin-bottom: 1.5rem;
@@ -33,7 +33,7 @@
     padding-bottom: 0.5rem;
 }
 
-.dashboard-actions h1::after {
+.form-actions h1::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -43,13 +43,13 @@
     background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
 }
 
-.dashboard-actions form {
+.form-actions form {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
 }
 
-.dashboard-actions input {
+.form-actions input {
     background: rgba(15, 23, 42, 0.7);
     border: 1px solid var(--electric-purple);
     border-radius: 8px;
@@ -60,18 +60,19 @@
     box-shadow: 0 0 10px rgba(168, 85, 247, 0.1);
 }
 
-.dashboard-actions input:focus {
+.form-actions input:focus {
     outline: none;
     border-color: var(--neon-cyan);
     box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
     background: rgba(15, 23, 42, 0.9);
 }
 
-.dashboard-actions input::placeholder {
+.form-actions input::placeholder {
     color: rgba(255, 255, 255, 0.6);
 }
+
 /* [type="submit"]  */
-.dashboard-actions button{
+.form-actions button{
     background: linear-gradient(135deg, var(--electric-purple) 0%, var(--neon-cyan) 100%);
     color: white;
     border: none;
@@ -90,7 +91,7 @@
 }
 
 /* [type="submit"]  */
-.dashboard-actions button:hover {
+.form-actions button:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 20px rgba(0, 245, 255, 0.6);
     background: linear-gradient(135deg, var(--neon-pink) 0%, var(--electric-purple) 100%);
@@ -116,113 +117,20 @@
     transform: translateY(-1px);
 }
 
-.dashboard-actions input[type="file"] {
+.form-actions input[type="file"] {
     padding: 10px;
     background: rgba(15, 23, 42, 0.5);
     border: 1px dashed var(--electric-purple);
     cursor: pointer;
 }
 
-.dashboard-actions input[type="file"]:hover {
+.form-actions input[type="file"]:hover {
     background: rgba(15, 23, 42, 0.7);
     border-color: var(--neon-cyan);
 }
 
 /* Estilo para los iconos */
-.fas.fa-plus {
+.fas.fa-plus, .fas.fa-save {
     color: var(--neon-yellow);
     text-shadow: 0 0 5px var(--neon-yellow);
-}
-
-
-/* MODAL Y MENSAJES */
-#message-container {
-    margin: 1rem 0;
-    min-height: 50px;
-}
-
-.alert {
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    font-weight: bold;
-}
-
-.alert-success {
-    background: rgba(40, 167, 69, 0.2);
-    border: 1px solid #28a745;
-    color: #28a745;
-}
-
-.alert-error {
-    background: rgba(220, 53, 69, 0.2);
-    border: 1px solid #dc3545;
-    color: #dc3545;
-}
-
-/* Estilos para el modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: var(--dark-bg);
-    padding: 2rem;
-    border-radius: 15px;
-    border: 1px solid var(--neon-cyan);
-    box-shadow: 0 0 25px rgba(0, 245, 255, 0.3);
-    max-width: 500px;
-    width: 90%;
-}
-
-.modal h3 {
-    color: var(--neon-cyan);
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.modal-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.modal-buttons button {
-    padding: 0.5rem 1.5rem;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#confirm-add {
-    background: var(--electric-purple);
-    color: white;
-    border: none;
-}
-
-#confirm-add:hover {
-    background: var(--neon-pink);
-    transform: translateY(-2px);
-}
-
-#cancel-add {
-    background: transparent;
-    color: var(--neon-red);
-    border: 1px solid var(--neon-red);
-}
-
-#cancel-add:hover {
-    background: rgba(255, 0, 0, 0.1);
 }

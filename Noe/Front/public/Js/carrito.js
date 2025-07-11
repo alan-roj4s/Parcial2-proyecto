@@ -12,7 +12,6 @@ function configurarEventos() {
     if(checkoutForm) {
         checkoutForm.addEventListener('submit', procesarTicket);
     }
-    localStorage.clear();
 }
 
 
@@ -111,6 +110,11 @@ function procesarTicket(event) {
     document.getElementById('formUserName').value = formData.userName;
     document.getElementById('formCartItems').value = formData.formCartItems;
     document.getElementById('formCartTotal').value = formData.formCartTotal;
+
+    carrito = {}; // vacía 
+    localStorage.clear(); // borra storage
+    renderizarItems(); 
+
     
     event.target.submit();
 }

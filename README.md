@@ -171,15 +171,6 @@ proyecto/
 
 Este proyecto fue desarrollado como parte de un trabajo universitario, implementando conceptos de desarrollo web full-stack, arquitectura MVC, y gestión de bases de datos relacionales.
 
-## 🔮 Futuras Mejoras
-
-- Implementar sistema de usuarios registrados
-- Agregar pasarela de pagos
-- Sistema de reviews y calificaciones
-- Notificaciones por email
-- API REST más completa
-- Testing automatizado
-
 ---
 
 *Desarrollado con ❤️ para [UTN]*

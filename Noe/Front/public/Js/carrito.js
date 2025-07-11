@@ -12,6 +12,7 @@ function configurarEventos() {
     if(checkoutForm) {
         checkoutForm.addEventListener('submit', procesarTicket);
     }
+    localStorage.clear();
 }
 
 

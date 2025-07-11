@@ -1,0 +1,193 @@
+/* ===== DASHBOARD ADMIN - ESTILOS PRINCIPALES ===== */
+.dashboard {
+    padding: 2rem;
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, 
+        rgba(15, 23, 42, 0.95) 0%, 
+        rgba(30, 41, 59, 0.9) 100%);
+}
+
+.dashboard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: radial-gradient(
+        ellipse at top,
+        rgba(168, 85, 247, 0.1) 0%,
+        transparent 70%
+    );
+    z-index: -1;
+}
+
+/* HEADER DEL DASHBOARD */
+.admin-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 245, 255, 0.3);
+    position: relative;
+}
+
+.admin-actions::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--neon-cyan), 
+        transparent);
+    opacity: 0.5;
+}
+
+.admin-actions h2 {
+    color: var(--neon-cyan);
+    font-size: 2.2rem;
+    margin: 0;
+    text-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+.admin-actions h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        var(--neon-cyan), 
+        var(--neon-pink));
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.admin-actions:hover h2::after {
+    transform: scaleX(1);
+}
+
+/* BOTÓN AGREGAR PRODUCTO */
+#btnAddProduct {
+    background: linear-gradient(135deg, 
+        rgba(0, 245, 255, 0.2) 0%, 
+        rgba(168, 85, 247, 0.2) 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 
+        0 0 15px rgba(0, 245, 255, 0.3),
+        inset 0 0 10px rgba(168, 85, 247, 0.2);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--neon-cyan);
+}
+
+#btnAddProduct::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        transparent 45%,
+        rgba(0, 245, 255, 0.1) 50%,
+        transparent 55%
+    );
+    transform: rotate(30deg);
+    transition: all 0.7s ease;
+}
+
+#btnAddProduct:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 5px 25px rgba(0, 245, 255, 0.5),
+        0 10px 30px rgba(168, 85, 247, 0.4);
+    background: linear-gradient(135deg, 
+        rgba(0, 245, 255, 0.3) 0%, 
+        rgba(168, 85, 247, 0.3) 100%);
+}
+
+#btnAddProduct:hover::before {
+    left: 100%;
+}
+
+#btnAddProduct i {
+    font-size: 1.2rem;
+    color: var(--neon-cyan);
+    transition: all 0.3s ease;
+}
+
+#btnAddProduct:hover i {
+    color: var(--neon-pink);
+    transform: rotate(90deg);
+}
+
+/* CONTENEDOR DE PRODUCTOS */
+#productGrid {
+    padding: 1rem 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Estilo para el modal de confirmación de eliminación */
+#confirmDeleteModal {
+    color: white; /* Texto blanco */
+}
+
+#confirmDeleteModal .modal-content {
+    background-color: #333; /* Fondo oscuro para el modal */
+    border: 1px solid #dc3545; /* Borde rojo */
+}
+
+#confirmDeleteModal .modal-header,
+#confirmDeleteModal .modal-footer {
+    border-color: #444; /* Líneas divisorias más claras */
+}
+
+#confirmDeleteModal .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+#confirmDeleteModal .btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+#confirmDeleteModal .btn-danger:hover {
+    background-color: #bb2d3b;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+    transition: opacity 0.3s ease; /* Efecto suave al cambiar estado */
+}
+/* este css fue hecho solo para que el texto de confirmacion DELETE  no se junte con el fondo */
+/* sientete libre de cambiarlo*/

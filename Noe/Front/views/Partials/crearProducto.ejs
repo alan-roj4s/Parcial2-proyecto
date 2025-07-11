@@ -1,0 +1,29 @@
+<div id="admin-form-container">
+    <div class="form-actions">
+        <h1>Agregar Producto</h1>
+        <div id="message-container"></div>
+        <form id="add-product-form" enctype="multipart/form-data">
+            <input type="text" name="nombre" placeholder="Nombre del producto..." required><br>
+            <input type="text" name="categoria" placeholder="Categoria del producto..." required><br>
+            <input type="text" name="plataforma" placeholder="Plataforma del producto..." required><br>
+            <input type="number" name="precio" placeholder="Precio del producto..." step="0.01" required><br>
+            <input type="file" name="imagen" accept="image/*" required><br>
+            <button type="button" id="submit-product-btn">
+                <i class="fas fa-plus"></i> Agregar Producto
+            </button>
+        </form>
+    </div>
+    <button id="logoutBtn">Cerrar sesion</button> 
+</div>
+<!-- MODAL DE CONFIRMACION -->
+<div id="confirmation-modal" class="modal">
+    <div class="modal-content">
+        <h3>¿Confirma la adicion del producto?</h3>
+        <p id="product-preview"></p>
+        <div class="modal-buttons">
+            <button id="confirm-add">Si, agregar</button>
+            <button id="cancel-add">Cancelar</button>
+        </div>
+    </div>
+</div>
+

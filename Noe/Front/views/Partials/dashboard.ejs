@@ -1,43 +1,45 @@
-<div id="admin-dashboard">
-    <div class="dashboard-header">
+<div class="dashboard">
+
+    <div class="admin-actions">
         <h2>Panel de Administración</h2>
-        <button class="btn-logout" id="logoutBtn">Cerrar Sesión</button>
+        <button id="btnAddProduct">
+            <i class="fas fa-plus-circle"></i>Agregar Producto</button>
     </div>
-    
-    <div class="dashboard-stats">
-        <div class="stat-card">
-            <h3>Productos Activos</h3>
-            <span class="stat-number"><%= stats.activeProducts %></span>
+
+    <!-- Lista de productos -->
+    <div class="container-fluid">
+        <div class="row" id="productGrid">
+            <!-- SE CARGAN LOS PRODUCTOS DINAMICAMENTE -->
         </div>
-        <div class="stat-card">
-            <h3>Productos Inactivos</h3>
-            <span class="stat-number"><%= stats.inactiveProducts %></span>
-        </div>
+        <button id="btnAddProduct">Agregar Producto</button>
     </div>
-    
-    <div class="dashboard-actions">
-        <button class="btn-primary" id="addProductBtn">
-            <i class="fas fa-plus"></i> Agregar Producto
-        </button>
+
+    <!-- Lista de productos -->
+    <div class="product-grid" id="productGrid">
+        <!-- SE CARGAN LOS PRODUCTOS DINAMICAMENTE -->
     </div>
-    
-    <div class="products-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Imagen</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Los productos se cargarán dinámicamente con JavaScript -->
-            </tbody>
-        </table>
+</div>
+
+    <!-- Paginación -->
+    <div class="d-flex justify-content-center mt-4" id="paginationContainer">
     </div>
+
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">¿Eliminar producto?</h5>
+      </div>
+      <div class="modal-body">
+        <p>¡Esta acción no se puede deshacer!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Eliminar</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>

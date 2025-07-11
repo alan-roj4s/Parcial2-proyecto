@@ -88,7 +88,6 @@ function addButtons() {
     document.querySelectorAll('.btn-edit').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const productId = e.target.dataset.id;
-            // CREAR LA RUTA DE EDITARRR #####################
             window.location.href = `/api/products/edit-product/${productId}`;
         })
     });

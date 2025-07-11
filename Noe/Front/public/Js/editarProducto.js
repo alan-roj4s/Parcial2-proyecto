@@ -51,14 +51,18 @@ export function inicializarEdicion() {
                 body: formData,
                 credentials: 'include'
             });
+            
+            const data = await response.json();
 
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Error al actualizar');
+                throw new Error(data.error || 'Error al actualizar');
             }
 
-            const data = await response.json();
-            showMessage('Producto actualizado exitosamente', 'success');
+            showMessage(data.message, 'success');
+
+            // if (data.redirectUrl) {
+            //     window.location.href = data.redirectUrl;
+            // }
         } catch(error) {
             showMessage(error.message || 'Error al comunicarse con el servidor', 'error');
         }

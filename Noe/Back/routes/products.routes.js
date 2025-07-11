@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { getProducts, addProduct, getProductToEdit, updateProductEdit, renderAgregarProducto, destroyProduct, toggleProductStatus, getProductsForDashboard } from '../controllers/products.controller.js';
 import multer from '../middlewares/upload.middle.js';
+import { requireAdminAuth } from '../middlewares/authAdmin.js';
 
 
 const router = Router();

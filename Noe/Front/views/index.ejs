@@ -38,12 +38,16 @@
                 <link rel="stylesheet" href="/css/admin.css">
                 <%- include('Partials/loginAdmin') %>
             <% } else if(currentView === 'dashboard') {%>
+                <<link rel="stylesheet" href="/css/productos.css">
                 <link rel="stylesheet" href="/css/dashboard.css">
                 <%- include('Partials/dashboard') %>
             <% } else if(currentView === 'crearProducto') {%>
-                <link rel="stylesheet" href="/css/addProduct.css">
+                <link rel="stylesheet" href="/css/adminForms.css">
+                <link rel="stylesheet" href="/css/modal.css">
                 <%- include('Partials/crearProducto') %>
             <% } else if(currentView === 'edit-product') {%>
+                <link rel="stylesheet" href="/css/adminForms.css">
+                <link rel="stylesheet" href="/css/modal.css">
                 <%- include('Partials/edit-product') %>
             <% } %>
         </main>

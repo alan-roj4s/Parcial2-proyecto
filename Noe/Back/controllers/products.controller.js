@@ -123,7 +123,11 @@ export const updateProductEdit = async (req, res) => {
         if (imagen) productData.imagen = imagen;
 
         await updateProduct(productData, id);
-        res.redirect('/dashboard');
+        res.status(201).json({
+            success: true,
+            message: 'Producto modificado exitosamente',
+            redirectUrl: '/api/admins/dashboard'
+        });
     } catch (error) {
         res.status(400).json({ 
             success: false,

@@ -1,4 +1,5 @@
 import Product from "../models/product-model.js";
+import CompraLog from "../models/compras-log-model.js";
 
 
 export const renderHome = (req, res) => {
@@ -47,7 +48,7 @@ export const renderProducts = async (req, res) => {
     }
 }
 
-export const renderTicket = (req, res) => {
+export const renderTicket = async (req, res) => {
     console.log('Datos recibido en renderTicket: ', req.body);
 
     const { userName, formCartItems, formCartTotal } = req.body;
@@ -58,6 +59,17 @@ export const renderTicket = (req, res) => {
 
     try {
         const parseItems = JSON.parse(formCartItems);
+
+        // REGISTRAR COMPRA EN TABLA ======
+        await CompraLog.create({
+            nombre_cliente: userName || "Cliente no identificado",
+            productos: formCartItems, // Guardamos el JSON completo
+            total: parseFloat(formCartTotal)
+        });
+        // ==============
+
+
+
         res.render("index", {
             title: 'ParaDox - Ticket',
             currentView: 'ticket',

@@ -57,7 +57,7 @@ export function inicializarEdicion() {
                 throw new Error(errorData.error || 'Error al actualizar');
             }
 
-            // const data = await response.json();
+            const data = await response.json();
             showMessage('Producto actualizado exitosamente', 'success');
         } catch(error) {
             showMessage(error.message || 'Error al comunicarse con el servidor', 'error');

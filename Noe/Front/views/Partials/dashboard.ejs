@@ -11,5 +11,33 @@
         <div class="row" id="productGrid">
             <!-- SE CARGAN LOS PRODUCTOS DINAMICAMENTE -->
         </div>
+        <button id="btnAddProduct">Agregar Producto</button>
     </div>
+
+    <!-- Lista de productos -->
+    <div class="product-grid" id="productGrid">
+        <!-- SE CARGAN LOS PRODUCTOS DINAMICAMENTE -->
+    </div>
+</div>
+
+    <!-- Paginación -->
+    <div class="d-flex justify-content-center mt-4" id="paginationContainer">
+    </div>
+
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">¿Eliminar producto?</h5>
+      </div>
+      <div class="modal-body">
+        <p>¡Esta acción no se puede deshacer!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Eliminar</button>
+      </div>
+    </div>
+  </div>
 </div>

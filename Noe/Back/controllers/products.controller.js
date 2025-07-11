@@ -1,9 +1,10 @@
 import Product from "../models/product-model.js";
-import { createProduct, findPkProduct, updateProduct } from "../services/product.service.js";
+import { createProduct, findPkProduct, updateProduct, deleteProduct } from "../services/product.service.js";
 
 export const getProducts = async (req, res) => {
     try {
         const productos = await Product.findAll({
+            where: { activo: true }, // SOLO ACTIVOS SE MUESTRAN
             attributes: ['id', 'nombre', 'categoria', 'plataforma', 'precio', 'imagen'],
             raw: true 
         });
@@ -13,6 +14,36 @@ export const getProducts = async (req, res) => {
         res.status(500).json({error: 'Error al obtener productos'})
     }
 };
+
+// EXCLUSIVO PARA EL DASHBOARD
+export const getProductsForDashboard = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = 8; // 8 productos por página
+        const offset = (page - 1) * limit;
+
+        const { count, rows: productos } = await Product.findAndCountAll({
+            attributes: ['id', 'nombre', 'categoria', 'plataforma', 'precio', 'imagen', 'activo'],
+            limit,
+            offset,
+            order: [['id', 'ASC']]
+        });
+
+        const totalPages = Math.ceil(count / limit);
+
+        res.json({
+            productos,
+            currentPage: page,
+            totalPages,
+            totalProducts: count
+        });
+    } catch (error) {
+        console.error('Error en getProductsForDashboard:', error);
+        res.status(500).json({error: error.message});
+    }
+};
+
+
 
 // MUESTRA EL FORM
 export const renderAgregarProducto = (req, res) => {
@@ -99,3 +130,35 @@ export const updateProductEdit = async (req, res) => {
             error: error.message ||  "Error al editar producto" });
     }
 }
+
+// SE LLAMA PARA BORRAR EL PRODUCTO
+export const destroyProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await deleteProduct(id); // Llama al servicio
+        res.json({ success: true, message: "Producto eliminado" });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+};
+
+// ======== USADA PARA ACTIVAR / DESACTIVAR UN PRODUCTO
+export const toggleProductStatus = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const product = await Product.findByPk(id); // Cambia Products por Product
+        
+        if (!product) {
+            return res.status(404).json({ error: 'Producto no encontrado' });
+        }
+
+        await product.update({ activo: !product.activo });
+        res.json({ 
+            success: true, 
+            newStatus: product.activo 
+        });
+    } catch (error) {
+        console.error('Error en toggleProductStatus:', error);
+        res.status(500).json({ error: error.message });
+    }
+};

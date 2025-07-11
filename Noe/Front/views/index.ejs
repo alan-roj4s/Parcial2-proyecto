@@ -11,6 +11,14 @@
     </head>
     <body>
 
+        <!-- ========= FAVICON ============ -->
+
+        <link rel="icon" type="image/png" sizes="32x32" href="/Imagenes/logo.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/Imagenes/logo.png">
+
+    </head>
+    <body>
+
         <!-- Navbar -->
         <%- include('Partials/navbar')%>
         
@@ -30,16 +38,12 @@
                 <link rel="stylesheet" href="/css/admin.css">
                 <%- include('Partials/loginAdmin') %>
             <% } else if(currentView === 'dashboard') {%>
-                <link rel="stylesheet" href="/css/productos.css">
                 <link rel="stylesheet" href="/css/dashboard.css">
                 <%- include('Partials/dashboard') %>
             <% } else if(currentView === 'crearProducto') {%>
-                <link rel="stylesheet" href="/css/adminForms.css">
-                <link rel="stylesheet" href="/css/modal.css">
+                <link rel="stylesheet" href="/css/addProduct.css">
                 <%- include('Partials/crearProducto') %>
             <% } else if(currentView === 'edit-product') {%>
-                <link rel="stylesheet" href="/css/adminForms.css">
-                <link rel="stylesheet" href="/css/modal.css">
                 <%- include('Partials/edit-product') %>
             <% } %>
         </main>

@@ -156,3 +156,38 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* Estilo para el modal de confirmación de eliminación */
+#confirmDeleteModal {
+    color: white; /* Texto blanco */
+}
+
+#confirmDeleteModal .modal-content {
+    background-color: #333; /* Fondo oscuro para el modal */
+    border: 1px solid #dc3545; /* Borde rojo */
+}
+
+#confirmDeleteModal .modal-header,
+#confirmDeleteModal .modal-footer {
+    border-color: #444; /* Líneas divisorias más claras */
+}
+
+#confirmDeleteModal .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+#confirmDeleteModal .btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+#confirmDeleteModal .btn-danger:hover {
+    background-color: #bb2d3b;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+    transition: opacity 0.3s ease; /* Efecto suave al cambiar estado */
+}
+/* este css fue hecho solo para que el texto de confirmacion DELETE  no se junte con el fondo */
+/* sientete libre de cambiarlo*/

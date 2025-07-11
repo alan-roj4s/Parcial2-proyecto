@@ -23,4 +23,6 @@ export const updateProduct = async (productData, id) => {
 };
 
 // FALTARIA EL DE DELETE
-
+export const deleteProduct = async (id) => {
+    return await Products.destroy({ where: { id } });
+};

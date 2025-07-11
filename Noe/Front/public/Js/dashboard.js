@@ -1,19 +1,56 @@
-import { cargarProductos } from "./productos.js";
+// import { cargarProductos } from "./productos.js"; 
+// import hdp con razon desaparecias cuando desactivava el producto
+
 
 let productos = []
+let currentPage = 1;
+let totalPages = 1;
 
-export async function inicializarDashboard() {
+
+
+export async function inicializarDashboard(page = 1) {
     try {
-        productos = await cargarProductos();
+        const response = await fetch(`http://localhost:3000/api/products/dashboard-products?page=${page}`);
+        const data = await response.json();
+        
+        productos = data.productos;
+        currentPage = data.currentPage;
+        totalPages = data.totalPages;
+        
         cardProductosDash();
-        // AGREGAR 
+        renderPagination();
+        
         document.getElementById('btnAddProduct').addEventListener('click', () => {
-            window.location.href = '/api/products/add-product'
-        })
+            window.location.href = '/api/products/add-product';
+        });
     } catch (error) {
-        console.error('Error inicializando productos: ', error);
+        console.error('Error inicializando dashboard:', error);
     }
-} 
+}
+
+
+// RENDER DE LA PAGINACION
+function renderPagination() {
+    const paginationContainer = document.getElementById('paginationContainer');
+    if (!paginationContainer) return;
+    
+    paginationContainer.innerHTML = '';
+    
+    if (totalPages <= 1) return;
+    
+    for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `btn ${i === currentPage ? 'btn-primary' : 'btn-outline-primary'} mx-1`;
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => {
+            inicializarDashboard(i);
+        });
+        paginationContainer.appendChild(pageBtn);
+    }
+}
+
+// ========================
+
 
 function cardProductosDash() {
     const productGrid = document.getElementById('productGrid');
@@ -31,9 +68,9 @@ function cardProductosDash() {
                                 <i class="fas fa-edit me-1"></i>Editar</button>
                             <button class="btn-delete" data-id="${producto.id}">
                                 <i class="fas fa-trash me-1"></i>Eliminar</button>
-                            <button class="btn ${producto.isActive ? 'btn-warning' : 'btn-success'} btn-sm btn-toggle" data-id="${producto.id}" data-active="${producto.isActive}">
-                                <i class="fas ${producto.isActive ? 'fa-toggle-on' : 'fa-toggle-off'} me-1"></i>
-                                ${producto.isActive ? 'Desactivar' : 'Activar'}
+                            <button class="btn ${producto.activo ? 'btn-warning' : 'btn-success'} btn-sm btn-toggle" data-id="${producto.id}">
+                                <i class="fas ${producto.activo ? 'fa-toggle-on' : 'fa-toggle-off'} me-1"></i>
+                                ${producto.activo ? 'Desactivar' : 'Activar'}
                             </button>
                         </div>
                     </div>
@@ -60,15 +97,48 @@ function addButtons() {
     document.querySelectorAll('.btn-delete').forEach(btn => {
         btn.addEventListener('click', async (e) => {
             const productId = e.target.dataset.id;
+            const modal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
             // CREAR LA RUTA DE ELIMINAR #####################
-            const response = await fetch(`/api/products/delete-product/${productId}`, {
-                method: 'DELETE',
-            });
-            if (response.ok) {
-                inicializarDashboard();
-            }
+
+            document.getElementById('confirmDeleteBtn').onclick = async () => {
+                try {
+                    const response = await fetch(`/api/products/delete-product/${productId}`, {
+                        method: 'DELETE',
+                    });
+                    if (response.ok) {
+                        modal.hide();
+                        inicializarDashboard();
+                    }
+                } catch (error) {
+                    console.error("error al eliminar:", error)
+                }
+            };
+
+            modal.show()
         })
     });
 
-    // FALTA ACTIVAR/DESACTIVAR PROD
+
+    // ACTIVAR / DESACTIVAR
+    document.querySelectorAll('.btn-toggle').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+        const productId = e.target.closest('.btn-toggle').dataset.id;
+        try {
+            const response = await fetch(`http://localhost:3000/api/products/toggle-status/${productId}`,  {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                await inicializarDashboard(); // Recargar la vista
+            } else {
+                console.error("======================Error del servidor:", await response.text());
+            }
+        } catch (error) {
+            console.error("Error cambiando estado:", error);
+        }
+    });
+});
 }

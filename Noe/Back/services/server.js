@@ -8,6 +8,11 @@ import adminRouter from '../routes/admin.routes.js';
 import corsMiddleware from '../middlewares/cors.middleware.js';
 import session from "express-session";
 import envs from "../config/envs.js";
+import adminDashboard from '../routes/admin.routes.js'
+import corsMiddleware from '../middlewares/cors.middleware.js';
+import Products from '../models/product-model.js'; // PARA PERMITIR LA ACTUALIZACION
+
+import CompraLog from '../models/compras-log-model.js'; // ooooooooo
 
 //settings
 const app = express()
@@ -27,14 +32,31 @@ async function startServer() {
         await sequelize.authenticate();
         console.log('Conexion a la database establecida');
 
-        await sequelize.sync({ force: false }); // Crea/actualiza tablas
-        console.log('Modelos sincronizados con la base de datos.');
+        await sequelize.sync({ alter: true }); // Crea/actualiza tablas /// CAMBIADO A ALTER
+        console.log('Modelos sincronizados con la base de datos. (dios funciono)');
+
+
+        // == 
+        try {
+            await Products.update(
+            { activo: true },
+            { where: { activo: null } }
+        );
+        console.log('Productos existentes actualizados con activo=true');
+        } catch (error) {
+            console.log(error);
+            
+        }
         
+
+
+
         return app;
     } catch (error) {
         console.error('Error al sincronizar modelos:', error);
         process.exit(1);
     }
 }
+
 
 export default await startServer();
